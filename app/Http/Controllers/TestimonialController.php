@@ -12,6 +12,9 @@ class TestimonialController extends Controller
     public function index()
     {
         //
+        $testimonials = Testimonial::all();
+
+        return view('testimonials.index', compact('testimonials'));
     }
 
     /**
@@ -20,6 +23,7 @@ class TestimonialController extends Controller
     public function create()
     {
         //
+        return view('testimonials.create');
     }
 
     /**
@@ -27,15 +31,30 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validasi data input dari form
+        $validatedData = $request->validate([
+            'user_id' => 'required|exists:user_id', //memastikan user_id ada dan valid
+            'name' => 'required|string',
+            'category' => 'required|string',
+            'testimonials' => 'required|string',
+        ]);
+
+        //Menyimpan testimoni baru ke database
+        Testimonial::create($validatedData);
+
+        return redirect()->route('testimonials.index')->with('success', 'Ulasan berhasil ditambahkan.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        //Mengambil testimoni berdasarkan id
+        $testimonial = Testimonial::findOrFail($id);
+
+        // Menampilkan halaman
+        return view('testimonials.show', compact('testimonial'));
     }
 
     /**
@@ -43,22 +62,46 @@ class TestimonialController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Mengambil testimoni yang akan diedit
+        $testimonial = Testimonial::findOrFail($id);
+
+        return view('testimonials.edit', compact('testimonial'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // validasi data input dari form
+        $validatedData = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'name' => 'required|string',
+            'category' => 'required|string',
+            'testimonials' => 'required|string',
+        ]);
+
+        // Menemukan testimoni berdasarkan ID
+        $testimonial = Testimonial::findOrFail($id);
+
+        // Memperbarui data testimoni
+        $testimonial->update($validatedData);
+
+        // Redirect ke halaman index testimoni
+        return redirect()->route('testimonials.index')->with('success', 'Testimoni berhasil diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        // Menemukan testimoni berdasarkan ID
+        $testimonial = Testimonial::findOrFail($id);
+        
+        // Menghapus testimoni
+        $testimonial->delete();
+
+        return redirect()->route('testimonials.index')->with('success', 'Testimoni berhasil dihapus.');
     }
 }
