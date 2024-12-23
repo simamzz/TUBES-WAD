@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('rekruits', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('nim')->unique();
+            $table->string('kelas');
+            $table->string('semester');
+            $table->string('angkatan');
+            $table->string('no_telepon')->unique();
+            $table->string('email');
+            $table->string('tentor_matkul');
+            $table->string('nilai_matkul');
+            $table->string('IPK');
+            $table->text('pengalaman_tentor');
+            $table->text('alasan');
+            $table->text('program');
             $table->timestamps();
         });
     }
