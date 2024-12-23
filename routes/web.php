@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\RekruitController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -40,7 +39,6 @@ Route::get('/testimoni', function () {
     return view('testimoni');
 })->name('testimoni');
 
-<<<<<<< HEAD
 // spatie
 Route::group(['middleware' => ['permission:create users|view users|edit users|delete users']], function () {
     Route::get('/add-user',function(){
@@ -48,8 +46,6 @@ Route::group(['middleware' => ['permission:create users|view users|edit users|de
     });
 });
 
-require __DIR__ . '/auth.php';
-=======
 require __DIR__ . '/auth.php';
 
 // rekruits
@@ -65,4 +61,3 @@ Route::get('/rekruit/{rekruit}/edit', [RekruitController::class, 'edit'])->name(
 Route::put('/rekruit/{rekruit}', [RekruitController::class, 'update'])->name('rekruits.update');
 
 Route::delete('/rekruit/{rekruit}', [RekruitController::class, 'destroy'])->name('rekruits.destroy');
->>>>>>> 3751af8e613d62f77533b1ebaba1279c848577f4
