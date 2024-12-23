@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\RekruitController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
