@@ -8,19 +8,23 @@ use Illuminate\Http\Request;
 
 class AnswerController extends Controller
 {
-    // Menyimpan jawaban untuk pertanyaan tertentu
     public function store(Request $request, Question $question)
     {
         $request->validate([
             'body' => 'required|string',
         ]);
 
-        $answer = Answer::create([
-            'body' => $request->body,
-            'question_id' => $question->id,
-            'user_id' => auth()->id(),  // Menyimpan ID pengguna yang memberikan jawaban
-        ]);
+        $answer = new Answer();
+        $answer->body = $request->body;
+        $answer->user_id = auth()->id();
+        $answer->question_id = $question->id;
+        $answer->save();
 
-        return redirect()->route('forum.show', $question->id);
+        return redirect()->route('forum.show', $question)->with('success', 'Jawaban berhasil ditambahkan!');
+    }
+
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
     }
 }

@@ -22,14 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    // Route untuk daftar pertanyaan
+    //Forum Routes
     Route::get('/forum', [QuestionController::class, 'index'])->name('forum.index');
-
-    // Route untuk membuat pertanyaan
     Route::get('/forum/create', [QuestionController::class, 'create'])->name('forum.create');
     Route::post('/forum', [QuestionController::class, 'store'])->name('forum.store');
-
-    // Route untuk melihat detail pertanyaan dan memberikan jawaban
     Route::get('/forum/{question}', [QuestionController::class, 'show'])->name('forum.show');
     Route::post('/forum/{question}/answer', [AnswerController::class, 'store'])->name('answers.store');
 });

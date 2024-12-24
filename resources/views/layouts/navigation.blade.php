@@ -21,7 +21,7 @@
                     <x-nav-link :href="route('course')" :active="request()->routeIs('course')">
                         {{ __('Course') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('forum')" :active="request()->routeIs('forum')">
+                    <x-nav-link :href="route('forum.index')" :active="request()->routeIs('forum.index')">
                         {{ __('Forum') }}
                     </x-nav-link>
                     <x-nav-link :href="route('testimoni')" :active="request()->routeIs('testimoni')">
@@ -81,6 +81,18 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('event')" :active="request()->routeIs('event')">
+                {{ __('Event') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('course')" :active="request()->routeIs('course')">
+                {{ __('Course') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('forum.index')" :active="request()->routeIs('forum.index')">
+                {{ __('Forum') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('testimoni')" :active="request()->routeIs('testimoni')">
+                {{ __('Testimoni') }}
             </x-responsive-nav-link>
         </div>
 
