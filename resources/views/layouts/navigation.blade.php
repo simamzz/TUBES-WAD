@@ -21,7 +21,7 @@
                     <x-nav-link :href="route('course')" :active="request()->routeIs('course')">
                         {{ __('Course') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('forum.index')" :active="request()->routeIs('forum.index')">
+                    <x-nav-link :href="route('forum')" :active="request()->routeIs('forum')">
                         {{ __('Forum') }}
                     </x-nav-link>
                     <x-nav-link :href="route('testimoni')" :active="request()->routeIs('testimoni')">
@@ -88,7 +88,7 @@
             <x-responsive-nav-link :href="route('course')" :active="request()->routeIs('course')">
                 {{ __('Course') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('forum.index')" :active="request()->routeIs('forum.index')">
+            <x-responsive-nav-link :href="route('forum')" :active="request()->routeIs('forum')">
                 {{ __('Forum') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('testimoni')" :active="request()->routeIs('testimoni')">
