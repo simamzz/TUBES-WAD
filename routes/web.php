@@ -4,8 +4,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RekruitController;
 use App\Http\Controllers\TestimonialController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\AnswerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,17 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
-    // Route untuk daftar pertanyaan
-    Route::get('/forum', [QuestionController::class, 'index'])->name('forum.index');
 
-    // Route untuk membuat pertanyaan
-    Route::get('/forum/create', [QuestionController::class, 'create'])->name('forum.create');
-    Route::post('/forum', [QuestionController::class, 'store'])->name('forum.store');
-
-    // Route untuk melihat detail pertanyaan dan memberikan jawaban
-    Route::get('/forum/{question}', [QuestionController::class, 'show'])->name('forum.show');
-    Route::post('/forum/{question}/answer', [AnswerController::class, 'store'])->name('answers.store');
 });
 
 // Resource routes for Event and Testimonial
@@ -50,6 +38,10 @@ Route::get('/course', function () {
 Route::get('/testimoni', function () {
     return view('testimoni');
 })->name('testimoni');
+
+Route::get('/forum', function () {
+    return view('forum');
+})->name('forum');
 
 // Spatie Permission Routes
 Route::group(['middleware' => ['permission:create users|view users|edit users|delete users']], function () {
