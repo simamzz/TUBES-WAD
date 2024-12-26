@@ -29,7 +29,7 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                @yield('content') <!-- Ensure child views use @section('content') -->
             </main>
         </div>
     </body>
