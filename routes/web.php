@@ -5,6 +5,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\RekruitController;
 use App\Http\Controllers\TestimonialController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Event;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,13 +26,10 @@ Route::middleware('auth')->group(function () {
 Route::resource('testimonials', TestimonialController::class);
 Route::resource('events', EventController::class);
 
-// navigasi event
-
-
-
 // navigasi
 Route::get('/event', function () {
-    return view('event');
+    $events = Event::all();
+    return view('events.index', compact('events'));
 })->name('event');
 
 Route::get('/course', function () {
