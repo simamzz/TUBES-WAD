@@ -20,9 +20,13 @@ use Illuminate\Support\Facades\Session;
             <div class="col-md-10">
                 <h3 class="mt-4">Events</h3>
             </div>
+
+            {{-- Hanya Admin yang bisa melihat tombol Create --}}
+            @role('admin')
             <div class="col-sm-2" style="margin-top: 20px;">
                 <a class="btn btn-primary" href="{{ route('events.create') }}">Create New Event</a>
             </div>
+            @endrole
         </div> 
         <br>
 
@@ -40,7 +44,11 @@ use Illuminate\Support\Facades\Session;
                     <th>Description</th>
                     <th width="150px">Event Date</th>
                     <th width="150px">Location</th>
+
+                    {{-- Hanya Admin yang bisa melihat kolom Actions --}}
+                    @role('admin')
                     <th width="210px">Actions</th>
+                    @endrole
                 </tr>
             </thead>
             <tbody>
@@ -55,6 +63,9 @@ use Illuminate\Support\Facades\Session;
                         <td>{{ Str::limit($event->description, 50) }}</td>
                         <td>{{ \Carbon\Carbon::parse($event->event_date)->format('d-m-Y H:i') }}</td>
                         <td>{{ $event->location }}</td>
+
+                        {{-- Hanya Admin yang bisa melihat tombol Edit dan Delete --}}
+                        @role('admin')
                         <td>
                             <a class="btn btn-sm btn-success" href="{{ route('events.edit', $event->id) }}">Edit</a>
                             <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
@@ -63,6 +74,7 @@ use Illuminate\Support\Facades\Session;
                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                             </form>
                         </td>
+                        @endrole
                     </tr>
                 @endforeach
             </tbody>
