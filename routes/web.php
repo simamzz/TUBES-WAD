@@ -6,6 +6,8 @@ use App\Http\Controllers\RekruitController;
 use App\Http\Controllers\TestimonialController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Event;
+use App\Models\Testimonial;
+use App\Models\Rekruit;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,22 +37,32 @@ Route::get('/event', function () {
 
 // navigasi course
 Route::get('/course', function () {
-    return view('course');
+    $events = Event::all(); // ubah sesuai controller masing2
+    return view('course', compact('course'));
 })->name('course');
 
 // navigasi testimoni
 Route::get('/testimoni', function () {
-    return view('testimoni');
+    $testimonials = Testimonial::all();
+    return view('testimonials.index', compact('testimonials'));
 })->name('testimoni');
 
 // navigasi forum
 Route::get('/forum', function () {
-    return view('forum');
+    $events = Event::all(); // ubah sesuai controller masing2
+    return view('forum.index', compact('forum)'));
 })->name('forum');
+
+// navigasi rekruitasi
+Route::get('/rekruitasi', function () {
+    $rekruits = Rekruit::all();
+    return view('rekruits.index', compact('rekruits)'));
+})->name('rekruitasi');
 
 // navigasi article
 Route::get('/article', function () {
-    return view('article');
+    $events = Event::all(); // ubah sesuai controller masing2
+    return view('article', compact('article'));
 })->name('article');
 // NAVIGASI LINE ----------------------------
 
