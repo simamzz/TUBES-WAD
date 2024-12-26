@@ -30,6 +30,10 @@ Route::resource('events', EventController::class);
 
 
 // navigasi
+Route::get('/event', function () {
+    return view('event');
+})->name('event');
+
 Route::get('/course', function () {
     return view('course');
 })->name('course');
