@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Session;
 @endphp
 
 @section('content')
-<html lang="en">
+<div class="container">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,6 +44,7 @@ use Illuminate\Support\Facades\Session;
                     <th>Description</th>
                     <th width="150px">Event Date</th>
                     <th width="150px">Location</th>
+                    <th width="150px">Image</th>
 
                     {{-- Hanya Admin yang bisa melihat kolom Actions --}}
                     @role('admin')
@@ -63,6 +64,13 @@ use Illuminate\Support\Facades\Session;
                         <td>{{ Str::limit($event->description, 50) }}</td>
                         <td>{{ \Carbon\Carbon::parse($event->event_date)->format('d-m-Y H:i') }}</td>
                         <td>{{ $event->location }}</td>
+                        <td class="showPhoto">
+                            @if ($event->image)
+                                <img src="{{ asset('storage/' . $event->image) }}" alt="Event Image" class="img-fluid">
+                            @else
+                                <p>No image uploaded</p>
+                            @endif
+                        </td>
 
                         {{-- Hanya Admin yang bisa melihat tombol Edit dan Delete --}}
                         @role('admin')
@@ -80,6 +88,11 @@ use Illuminate\Support\Facades\Session;
             </tbody>
         </table>
     </div>
-    </body>
-</html>
 @endsection
+<style>
+    .showPhoto {
+        width: 100px;
+        height: 100px;
+        margin: auto;
+    }
+</style>

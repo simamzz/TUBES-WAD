@@ -32,7 +32,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('events.store') }}" method="POST">
+            <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Event Title</label>
@@ -61,6 +61,15 @@
                     </div>
                 </div>
                 <hr>
+                @csrf
+                <!-- Image -->
+                <div class="form-group">
+                    <label for="image">Upload Image</label>
+                    <input type="file" class="form-control" id="image" name="image">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+
                 <div class="form-group">
                     <a href="{{ route('events.index') }}" class="btn btn-success">Cancel</a>
                     <button type="submit" class="btn btn-primary">Save</button>

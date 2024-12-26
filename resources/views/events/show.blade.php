@@ -42,6 +42,17 @@
                 {{ $event->location }}
             </div>
         </div>
+        <!-- image -->
+        <div class="form-group">
+            <label for="image">Image:</label>
+            @if ($event->image)
+            <img src="{{ asset('storage/' . $event->image) }}" alt="Event Image" class="img-fluid showPhoto">
+            @else
+            <p>No image uploaded</p>
+            @endif
+        </div>
+        
+
         <div class="form-group row">
             <div class="col-md-12">
                 <a href="{{ route('events.index') }}" class="btn btn-success">Back</a>
@@ -53,3 +64,11 @@
 </html>
 
 @endsection
+
+<style>
+    .showPhoto {
+        width: 100px;
+        height: 100px;
+        margin: left;
+    }
+</style>
