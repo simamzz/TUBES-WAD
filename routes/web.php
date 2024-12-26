@@ -26,23 +26,33 @@ Route::middleware('auth')->group(function () {
 Route::resource('testimonials', TestimonialController::class);
 Route::resource('events', EventController::class);
 
-// navigasi
+// NAVIGASI LINE ----------------------------
+// navigasi event
 Route::get('/event', function () {
     $events = Event::all();
     return view('events.index', compact('events'));
 })->name('event');
 
+// navigasi course
 Route::get('/course', function () {
     return view('course');
 })->name('course');
 
+// navigasi testimoni
 Route::get('/testimoni', function () {
     return view('testimoni');
 })->name('testimoni');
 
+// navigasi forum
 Route::get('/forum', function () {
     return view('forum');
 })->name('forum');
+
+// navigasi article
+Route::get('/article', function () {
+    return view('article');
+})->name('article');
+// NAVIGASI LINE ----------------------------
 
 // Spatie Permission Routes
 Route::group(['middleware' => ['permission:create users|view users|edit users|delete users']], function () {
