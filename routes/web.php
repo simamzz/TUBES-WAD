@@ -4,7 +4,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RekruitController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ForumController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Answer;
+use App\Models\Question;
+use App\Models\Forum;
 use App\Models\Event;
 use App\Models\Testimonial;
 use App\Models\Rekruit;
@@ -49,8 +55,16 @@ Route::get('/testimoni', function () {
 
 // navigasi forum
 Route::get('/forum', function () {
-    $events = Event::all(); // ubah sesuai controller masing2
-    return view('forum.index', compact('forum)'));
+    Route::resource('forums', ForumController::class)->middleware('auth');
+
+    // Route untuk menyimpan pertanyaan di forum
+    Route::post('forums/{forum}/questions', [QuestionController::class, 'store'])->name('questions.store')->middleware('auth');
+
+    // Route untuk menyimpan jawaban pada pertanyaan
+    Route::post('questions/{question}/answers', [AnswerController::class, 'store'])->name('answers.store')->middleware('auth');
+
+    $forums = Forum::with('user')->latest()->get();
+    return view('forums.index', compact('forums'));
 })->name('forum');
 
 // navigasi rekruitasi
