@@ -9,7 +9,7 @@ class Rekruit extends Model
 {
     use HasFactory;
 
-    protected $table = 'rekruit';
+    protected $table = 'rekruits';
 
     protected $fillable = [
         'nama',

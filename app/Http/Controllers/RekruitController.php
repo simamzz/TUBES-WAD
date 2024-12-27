@@ -12,12 +12,11 @@ class RekruitController extends Controller
     public function index()
     {
         $rekruits = Rekruit::all();
-        return view('rekruits.index', compact('rekruits)'));
+        return view('rekruits.index', compact('rekruits'));
     }
 
     public function create()
     {
-        $rekruits = Rekruit::all();
         return view('rekruits.create');    
     }
 
@@ -41,17 +40,20 @@ class RekruitController extends Controller
 
         Rekruit::create($validatedData);
 
-        return redirect()->route('rekruits.index');
+        return redirect()->route('rekruits.index')->with('success', 'Recruitment created successfully!');
 
     }
 
-    public function edit(Rekruit $rekruit)
+    public function edit($id)
     {
-        return view('rekruits.edit', compact('rekruits'));
+        $rekruit = Rekruit::findOrFail($id);
+        return view('rekruits.edit', compact('rekruit'));
     }
 
-    public function update(Request $request, Rekruit $rekruit)
+    public function update(Request $request, $id)
     {
+        $rekruit = Rekruit::findOrFail($id);
+
         $validatedData = $request->validate([
             'nama' => 'required|string',
             'nim' => 'required|string|unique:rekruits',
@@ -70,14 +72,24 @@ class RekruitController extends Controller
 
         $rekruit->update($validatedData);
 
-        return redirect()->route('rekruits.index');
+        return redirect()->route('rekruits.index')->with('success', 'Recruitment updated successfully!');
 
     }
 
-    public function destroy(Rekruit $rekruit)
+    public function destroy($id)
     {
+        $rekruit = Rekruit::findOrFail($id);
+        
         $rekruit->delete();
 
         return redirect()->route('rekruits.index');
+    }
+
+
+    public function show($id)
+    {
+        $rekruit = Rekruit::findOrFail($id);
+
+        return view('rekruits.show', compact('rekruit'));
     }
 }

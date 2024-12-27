@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
 // controller
 Route::resource('testimonials', TestimonialController::class);
 Route::resource('events', EventController::class);
+Route::resource('rekruits', RekruitController::class);
 
 // NAVIGASI LINE ----------------------------
 // navigasi event
@@ -68,10 +69,11 @@ Route::get('/forum', function () {
 })->name('forum');
 
 // navigasi rekruitasi
-Route::get('/rekruitasi', function () {
+Route::get('/rekruits', function () {
     $rekruits = Rekruit::all();
-    return view('rekruits.index', compact('rekruits)'));
-})->name('rekruitasi');
+    return view('rekruits.index', compact('rekruits'));
+})->name('rekruits');
+
 
 // navigasi article
 Route::get('/article', function () {
@@ -87,6 +89,7 @@ Route::group(['middleware' => ['permission:create users|view users|edit users|de
     });
 });
 
+<<<<<<< Updated upstream
 require __DIR__ . '/auth.php';
 
 // Rekruit Routes
@@ -114,3 +117,6 @@ Route::put('/{testimonial}', [TestimonialController::class, 'update'])->name('up
 // Menghapus testimonial
 Route::delete('/{testimonial}', [TestimonialController::class, 'destroy'])->name('destroy');
 });
+=======
+require __DIR__ . '/auth.php';
+>>>>>>> Stashed changes

@@ -24,7 +24,7 @@
                     <x-nav-link :href="route('forum')" :active="request()->routeIs('forum')">
                         {{ __('Forum') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('rekruitasi')" :active="request()->routeIs('rekruitasi')">
+                    <x-nav-link :href="route('rekruits')" :active="request()->routeIs('rekruits')">
                         {{ __('Rekruitasi') }}
                     </x-nav-link>
                     <x-nav-link :href="route('testimoni')" :active="request()->routeIs('testimoni')">
