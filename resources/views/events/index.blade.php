@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Session;
 @endphp
 
 @section('content')
-<div class="container">
+<x-slot name="header">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
