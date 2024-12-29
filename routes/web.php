@@ -68,6 +68,17 @@ Route::get('/forum', function () {
     return view('forums.index', compact('forums'));
 })->name('forum');
 
+// Rute Forum
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('forums', ForumController::class)->except(['show', 'index']);
+});
+
+// Rute untuk semua pengguna (Index dan Show dapat dilihat semua user)
+Route::resource('forums', ForumController::class)->only(['index', 'show']);
+Route::post('forums/{forum}/questions', [QuestionController::class, 'store'])->name('questions.store')->middleware('auth');
+Route::post('questions/{question}/answers', [AnswerController::class, 'store'])->name('answers.store')->middleware('auth');
+
+
 // navigasi rekruitasi
 Route::get('/rekruits', function () {
     $rekruits = Rekruit::all();
@@ -107,4 +118,3 @@ Route::get('/testimonials/{testimonial}', [TestimonialController::class, 'show']
 Route::get('/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit'); // Show form to edit testimonial
 Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('testimonials.update'); // Update testimonial
 Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy'); // Delete testimonial
-
