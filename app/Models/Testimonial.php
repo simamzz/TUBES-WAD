@@ -7,11 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Testimonial extends Model
 {
-    //
     use HasFactory;
-
-    protected $table = 'testimonials';
-
+    
     protected $fillable = [
         'user_id',
         'name',
@@ -20,7 +17,6 @@ class Testimonial extends Model
     ];
 
     //Relasi ke model user
-
     public function user()
     {
         return $this->belongsTo(User::class);

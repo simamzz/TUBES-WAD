@@ -7,94 +7,77 @@ use App\Models\Testimonial;
 
 class TestimonialController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Menampilkan semua testimonial
     public function index()
     {
-        //
         $testimonials = Testimonial::all();
-
         return view('testimonials.index', compact('testimonials'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Menampilkan form create testimonial
     public function create()
     {
-        //
         return view('testimonials.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Menyimpan testimoni baru
     public function store(Request $request)
     {
-        //validasi data input dari form
+        //cvalidasi data input dari form
         $validatedData = $request->validate([
-            'user_id' => 'required|exists:user_id', //memastikan user_id ada dan valid
+            'user_id' => 'required|exists:users,id', //memastikan user_id ada dan valid
             'name' => 'required|string',
             'category' => 'required|string',
-            'testimonials' => 'required|string',
+            'testimonial' => 'required|string',
         ]);
 
-        //Menyimpan testimoni baru ke database
+        //cMenyimpan testimoni baru ke database
         Testimonial::create($validatedData);
 
-        return redirect()->route('testimonials.index')->with('success', 'Ulasan berhasil ditambahkan.');
+        // Redirect dengan pesan sukses
+        return redirect()->route('testimonials.index')->with('success', 'Testimonial created successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // Menampilkan detail testimonial
     public function show($id)
     {
         //Mengambil testimoni berdasarkan id
         $testimonial = Testimonial::findOrFail($id);
 
         // Menampilkan halaman
-        return view('testimonials.show', compact('testimonial'));
+        return view('testimonial.show', compact('testimonial'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    // Menampilkan form edit testimonial
+    public function edit($id)
     {
         // Mengambil testimoni yang akan diedit
         $testimonial = Testimonial::findOrFail($id);
-
         return view('testimonials.edit', compact('testimonial'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Mengupdate testimonial yang sudah ada
     public function update(Request $request, $id)
     {
+        // Menemukan testimoni berdasarkan ID
+        $testimonial = Testimonial::findOrFail($id);
+
         // validasi data input dari form
         $validatedData = $request->validate([
             'user_id' => 'required|exists:users,id',
             'name' => 'required|string',
             'category' => 'required|string',
-            'testimonials' => 'required|string',
+            'testimonial' => 'required|string',
         ]);
-
-        // Menemukan testimoni berdasarkan ID
-        $testimonial = Testimonial::findOrFail($id);
 
         // Memperbarui data testimoni
         $testimonial->update($validatedData);
 
         // Redirect ke halaman index testimoni
-        return redirect()->route('testimonials.index')->with('success', 'Testimoni berhasil diperbarui.');
+        return redirect()->route('testimonials.index')->with('success', 'Testimonial updated successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Menghapus testimoni
     public function destroy($id)
     {
         // Menemukan testimoni berdasarkan ID
@@ -103,6 +86,6 @@ class TestimonialController extends Controller
         // Menghapus testimoni
         $testimonial->delete();
 
-        return redirect()->route('testimonials.index')->with('success', 'Testimoni berhasil dihapus.');
+        return redirect()->route('testimonials.index')->with('success', 'Testimonial deleted successfully!');
     }
 }
