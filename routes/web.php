@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // controller
-Route::resource('testimonial', TestimonialController::class);
+Route::resource('testimonials', TestimonialController::class);
 Route::resource('events', EventController::class);
 Route::resource('rekruits', RekruitController::class);
 
@@ -74,7 +74,6 @@ Route::get('/rekruits', function () {
     return view('rekruits.index', compact('rekruits'));
 })->name('rekruits');
 
-
 // navigasi article
 Route::get('/article', function () {
     $events = Event::all(); // ubah sesuai controller masing2
@@ -90,7 +89,7 @@ Route::group(['middleware' => ['permission:create users|view users|edit users|de
 });
 
 #<<<<<<< Updated upstream
-#require __DIR__ . '/auth.php';
+require __DIR__ . '/auth.php';
 
 // Rekruit Routes
 Route::get('/rekruit', [RekruitController::class, 'index'])->name('rekruits.index');
@@ -99,3 +98,13 @@ Route::post('/rekruit', [RekruitController::class, 'store'])->name('rekruits.sto
 Route::get('/rekruit/{rekruit}/edit', [RekruitController::class, 'edit'])->name('rekruits.edit');
 Route::put('/rekruit/{rekruit}', [RekruitController::class, 'update'])->name('rekruits.update');
 Route::delete('/rekruit/{rekruit}', [RekruitController::class, 'destroy'])->name('rekruits.destroy');
+
+// Testimonial Routes
+Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index'); // Show all testimonials
+Route::get('/testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create'); // Show form to create testimonial
+Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store'); // Save new testimonial
+Route::get('/testimonials/{testimonial}', [TestimonialController::class, 'show'])->name('testimonials.show'); // Show a single testimonial
+Route::get('/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit'); // Show form to edit testimonial
+Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('testimonials.update'); // Update testimonial
+Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy'); // Delete testimonial
+

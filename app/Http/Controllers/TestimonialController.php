@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
-use Illuminate\Support\Facades\Storage;
 
 class TestimonialController extends Controller
 {
@@ -26,7 +25,7 @@ class TestimonialController extends Controller
     {
         //cvalidasi data input dari form
         $validatedData = $request->validate([
-            'user_id' => 'required|exists:user_id', //memastikan user_id ada dan valid
+            'user_id' => 'required|exists:users,id', //memastikan user_id ada dan valid
             'name' => 'required|string',
             'category' => 'required|string',
             'testimonial' => 'required|string',
@@ -50,7 +49,7 @@ class TestimonialController extends Controller
     }
 
     // Menampilkan form edit testimonial
-    public function edit(string $id)
+    public function edit($id)
     {
         // Mengambil testimoni yang akan diedit
         $testimonial = Testimonial::findOrFail($id);
