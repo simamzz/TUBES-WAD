@@ -71,8 +71,8 @@ Route::get('/forum', function () {
 // navigasi rekruitasi
 Route::get('/rekruits', function () {
     $rekruits = Rekruit::all();
-    return view('rekruits.index', compact('rekruits'));
-})->name('rekruits');
+    return view('rekruits.index', compact('rekruits)'));
+})->name('rekruitasi');
 
 // navigasi article
 Route::get('/article', function () {
@@ -98,24 +98,3 @@ Route::post('/rekruit', [RekruitController::class, 'store'])->name('rekruits.sto
 Route::get('/rekruit/{rekruit}/edit', [RekruitController::class, 'edit'])->name('rekruits.edit');
 Route::put('/rekruit/{rekruit}', [RekruitController::class, 'update'])->name('rekruits.update');
 Route::delete('/rekruit/{rekruit}', [RekruitController::class, 'destroy'])->name('rekruits.destroy');
-
-// Testimonial Routes
-Route::group(['prefix' => 'testimonials', 'as' => 'testimonials.'], function () {
-// Menampilkan semua testimonial
-Route::get('/', [TestimonialController::class, 'index'])->name('index');
-// Menampilkan form untuk membuat testimonial baru
-Route::get('/create', [TestimonialController::class, 'create'])->name('create');
-// Menyimpan testimonial baru ke database
-Route::post('/', [TestimonialController::class, 'store'])->name('store');
-// Menampilkan testimonial tertentu
-Route::get('/{testimonial}', [TestimonialController::class, 'show'])->name('show');
-// Menampilkan form untuk mengedit testimonial
-Route::get('/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('edit');
-// Memperbarui testimonial yang ada
-Route::put('/{testimonial}', [TestimonialController::class, 'update'])->name('update');
-// Menghapus testimonial
-Route::delete('/{testimonial}', [TestimonialController::class, 'destroy'])->name('destroy');
-});
-=======
-require __DIR__ . '/auth.php';
->>>>>>> Stashed changes
