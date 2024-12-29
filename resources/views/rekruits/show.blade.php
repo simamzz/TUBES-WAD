@@ -96,15 +96,6 @@
                 {{ $recruit->program }}
             </div>
         </div>
-        <!-- image -->
-        <div class="form-group">
-            <label for="image">Image:</label>
-            @if ($rekruit->image)
-            <img src="{{ asset('storage/' . $rekruit->image) }}" alt="Oprec Staff Image" class="img-fluid showPhoto">
-            @else
-            <p>No image uploaded</p>
-            @endif
-        </div>
         
 
         <div class="form-group row">
@@ -118,11 +109,3 @@
 </html>
 
 @endsection
-
-<style>
-    .showPhoto {
-        width: 100px;
-        height: 100px;
-        margin: left;
-    }
-</style>

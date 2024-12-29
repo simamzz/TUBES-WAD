@@ -118,12 +118,6 @@
                 </div>
                 <hr>
                 @csrf
-            <!-- Image -->
-            <div class="form-group">
-                <label for="image">Upload Image</label>
-                <input type="file" class="form-control" id="image" name="image">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
 
             <hr>
             <div class="form-group">
