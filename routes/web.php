@@ -90,6 +90,7 @@ Route::group(['middleware' => ['permission:create users|view users|edit users|de
 });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 require __DIR__ . '/auth.php';
 
 // Rekruit Routes
@@ -99,3 +100,6 @@ Route::post('/rekruit', [RekruitController::class, 'store'])->name('rekruits.sto
 Route::get('/rekruit/{rekruit}/edit', [RekruitController::class, 'edit'])->name('rekruits.edit');
 Route::put('/rekruit/{rekruit}', [RekruitController::class, 'update'])->name('rekruits.update');
 Route::delete('/rekruit/{rekruit}', [RekruitController::class, 'destroy'])->name('rekruits.destroy');
+=======
+require __DIR__ . '/auth.php';
+>>>>>>> Stashed changes

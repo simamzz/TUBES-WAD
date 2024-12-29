@@ -117,6 +117,15 @@
                 </div>
                 <hr>
                 @csrf
+<<<<<<< Updated upstream
+=======
+                <!-- Image -->
+                <div class="form-group">
+                    <label for="image">Upload Image</label>
+                    <input type="file" class="form-control" id="image" name="image">
+                </div>
+                
+>>>>>>> Stashed changes
                 <button type="submit" class="btn btn-primary">Submit</button>
 
                 <div class="form-group">

@@ -96,6 +96,18 @@
                 {{ $recruit->program }}
             </div>
         </div>
+<<<<<<< Updated upstream
+=======
+        <!-- image -->
+        <div class="form-group">
+            <label for="image">Image:</label>
+            @if ($rekruit->image)
+            <img src="{{ asset('storage/' . $rekruit->image) }}" alt="Oprec Staff Image" class="img-fluid showPhoto">
+            @else
+            <p>No image uploaded</p>
+            @endif
+        </div>
+>>>>>>> Stashed changes
         
 
         <div class="form-group row">
@@ -108,4 +120,16 @@
 </body>
 </html>
 
+<<<<<<< Updated upstream
 @endsection
+=======
+@endsection
+
+<style>
+    .showPhoto {
+        width: 100px;
+        height: 100px;
+        margin: left;
+    }
+</style>
+>>>>>>> Stashed changes
