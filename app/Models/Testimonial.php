@@ -15,7 +15,6 @@ class Testimonial extends Model
     ];
 
     //Relasi ke model user
-
     public function user()
     {
         return $this->belongsTo(User::class);

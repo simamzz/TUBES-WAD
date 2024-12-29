@@ -89,8 +89,8 @@ Route::group(['middleware' => ['permission:create users|view users|edit users|de
     });
 });
 
-<<<<<<< Updated upstream
-require __DIR__ . '/auth.php';
+#<<<<<<< Updated upstream
+#require __DIR__ . '/auth.php';
 
 // Rekruit Routes
 Route::get('/rekruit', [RekruitController::class, 'index'])->name('rekruits.index');

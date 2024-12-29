@@ -10,7 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Create Testimoni</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
-            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJw8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
         <div class="container">
@@ -48,22 +48,26 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="event_date" class="col-sm-2 col-form-label">Testimonial Category </label>
+                    <label for="category" class="col-sm-2 col-form-label">Testimonial Category</label>
                     <div class="col-sm-10">
-                        <input type="datetime-local" name="event_date" class="form-control" id="event_date" required>
+                        <select name="category" class="form-control" id="category" required>
+                            <option value="" disabled selected>-- Select Category --</option>
+                            <option value="website">Testimonial about Website</option>
+                            <option value="mentor">Testimonial about Mentor</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="location" class="col-sm-2 col-form-label">Testimoni</label>
+                    <label for="testimonial" class="col-sm-2 col-form-label">Testimoni</label>
                     <div class="col-sm-10">
-                        <input type="text" name="location" class="form-control" id="location" 
-                                placeholder="Enter event location" required>
+                        <input type="text" name="testimonial" class="form-control" id="testimonial" 
+                                placeholder="Enter testimonial description" required>
                     </div>
                 </div>
                 <hr>
                 @csrf
                 <div class="form-group">
-                    <a href="{{ route('events.index') }}" class="btn btn-success">Cancel</a>
+                    <a href="{{ route('testimonials.index') }}" class="btn btn-success">Cancel</a>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
