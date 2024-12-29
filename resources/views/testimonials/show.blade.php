@@ -8,5 +8,5 @@
     <p><strong>User:</strong> {{ $testimonial->name }}</p>
     <p><strong>Category:</strong> {{ $testimonial->category }}</p>
     <p><strong>Testimonial:</strong> {{ $testimonial->testimonial }}</p>
-    <a href="{{ route('testimonials.index') }}" class="btn btn-secondary">Back</a>
+    <a href="{{ route('testimonial.index') }}" class="btn btn-secondary">Back</a>
 @endsection

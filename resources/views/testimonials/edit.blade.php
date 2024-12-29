@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Edit Testimonial</h1>
-    <form action="{{ route('testimonials.update', $testimonial->id) }}" method="POST">
+    <form action="{{ route('testimonial.update', $testimonial->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-3">

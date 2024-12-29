@@ -1,31 +1,73 @@
-@extends('app')
+@extends('layouts.app')
 
-@section('title', 'Create Testimonial')
+@section('title', 'Create Testimoni')
 
 @section('content')
-    <h1>Create Testimonial</h1>
-    <form action="{{ route('testimonials.store') }}" method="POST">
-        @csrf
-        <div class="mb-3">
-            <label for="user_id" class="form-label">User ID</label>
-            <input type="number" class="form-control" id="user_id" name="user_id" value="{{ old('user_id') }}" required>
-            @error('user_id')<small class="text-danger">{{ $message }}</small>@enderror
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Create Testimoni</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="form-row">
+                <div class="col-lg-12">
+                    <h3 class="mt-4">Create New Testimoni</h3>
+                </div>
+            </div>
+            <br>
+
+            @if ($errors->all())
+                <div class="alert alert-danger">
+                    <strong>Whoops! </strong> There are some problems with your input.<br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route('testimonials.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group row">
+                    <label for="user_id" class="col-sm-2 col-form-label">User ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="user_id" class="form-control" id="user_id" placeholder="Enter user ID" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <textarea name="name" class="form-control" id="name" rows="3" 
+                                placeholder="Enter name" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="event_date" class="col-sm-2 col-form-label">Testimonial Category </label>
+                    <div class="col-sm-10">
+                        <input type="datetime-local" name="event_date" class="form-control" id="event_date" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="location" class="col-sm-2 col-form-label">Testimoni</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="location" class="form-control" id="location" 
+                                placeholder="Enter event location" required>
+                    </div>
+                </div>
+                <hr>
+                @csrf
+                <div class="form-group">
+                    <a href="{{ route('events.index') }}" class="btn btn-success">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
         </div>
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
-            @error('name')<small class="text-danger">{{ $message }}</small>@enderror
-        </div>
-        <div class="mb-3">
-            <label for="category" class="form-label">Category</label>
-            <input type="text" class="form-control" id="category" name="category" value="{{ old('category') }}" required>
-            @error('category')<small class="text-danger">{{ $message }}</small>@enderror
-        </div>
-        <div class="mb-3">
-            <label for="testimonial" class="form-label">Testimonial</label>
-            <textarea class="form-control" id="testimonial" name="testimonial" rows="3" required>{{ old('testimonial') }}</textarea>
-            @error('testimonial')<small class="text-danger">{{ $message }}</small>@enderror
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </body>
+    </html>
 @endsection

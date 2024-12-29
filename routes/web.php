@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // controller
-Route::resource('testimonials', TestimonialController::class);
+Route::resource('testimonial', TestimonialController::class);
 Route::resource('events', EventController::class);
 Route::resource('rekruits', RekruitController::class);
 
@@ -101,6 +101,7 @@ Route::put('/rekruit/{rekruit}', [RekruitController::class, 'update'])->name('re
 Route::delete('/rekruit/{rekruit}', [RekruitController::class, 'destroy'])->name('rekruits.destroy');
 
 // Testimonial Routes
+<<<<<<< Updated upstream
 Route::group(['prefix' => 'testimonials', 'as' => 'testimonials.'], function () {
 // Menampilkan semua testimonial
 Route::get('/', [TestimonialController::class, 'index'])->name('index');
@@ -119,4 +120,6 @@ Route::delete('/{testimonial}', [TestimonialController::class, 'destroy'])->name
 });
 =======
 require __DIR__ . '/auth.php';
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
