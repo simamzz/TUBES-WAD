@@ -101,7 +101,6 @@ Route::put('/rekruit/{rekruit}', [RekruitController::class, 'update'])->name('re
 Route::delete('/rekruit/{rekruit}', [RekruitController::class, 'destroy'])->name('rekruits.destroy');
 
 // Testimonial Routes
-<<<<<<< Updated upstream
 Route::group(['prefix' => 'testimonials', 'as' => 'testimonials.'], function () {
 // Menampilkan semua testimonial
 Route::get('/', [TestimonialController::class, 'index'])->name('index');
@@ -118,8 +117,3 @@ Route::put('/{testimonial}', [TestimonialController::class, 'update'])->name('up
 // Menghapus testimonial
 Route::delete('/{testimonial}', [TestimonialController::class, 'destroy'])->name('destroy');
 });
-=======
-require __DIR__ . '/auth.php';
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
