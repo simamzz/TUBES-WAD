@@ -109,6 +109,8 @@ Route::get('/rekruit/{rekruit}', [RekruitController::class, 'show'])->name('rekr
 Route::get('/rekruit/{rekruit}/edit', [RekruitController::class, 'edit'])->name('rekruits.edit');
 Route::put('/rekruit/{rekruit}', [RekruitController::class, 'update'])->name('rekruits.update');
 Route::delete('/rekruit/{rekruit}', [RekruitController::class, 'destroy'])->name('rekruits.destroy');
+Route::patch('/rekruit/{rekruit}/accept', [RekruitController::class, 'accept'])->name('rekruits.accept');
+
 
 // Testimonial Routes
 Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index'); // Show all testimonials
