@@ -23,7 +23,7 @@
     </script>
 </head>
 <body>
-<div class="container">
+<div class="container d-flex flex-column min-vh-100">
     <div class="form-row">
         <div class="col-lg-12">
             <h3 class="mt-4">Forum Details</h3>
@@ -89,8 +89,9 @@
                         <button type="submit" class="btn btn-primary">Submit Answer</button>
                     </form>
                 @elseif ($question->answers->count() >= 5)
-                    <p>The maximum number of answers has been reached (5 answers).</p>
-                @endif </div>
+ <p>The maximum number of answers has been reached (5 answers).</p>
+                @endif
+            </div>
         @empty
             <p>No questions yet.</p>
         @endforelse
@@ -103,51 +104,14 @@
                 <label for="question">Ask a question:</label>
                 <textarea name="question" id="question" rows="3" class="form-control" required></textarea>
             </div>
-                <form action="{{ route('answers.store', $question->id) }}" method="POST">
-                    @csrf
-                    <textarea name="answer" class="form-control mb-3" placeholder="Tulis jawaban Anda di sini..." required></textarea>
-                    <button type="submit" class="btn btn-primary">Jawab</button>
-                </form>
-                <h6>Jawaban:</h6>
-                @foreach($question->answers as $answer)
-                    <p>- <strong>{{ $answer->user->name }}</strong>: {{ $answer->answer }}</p>
-                @endforeach
-            </div>
-        </div>
-    @endforeach
-                <!-- Answer Form Toggle -->
-                @if ((auth()->user()->id === $question->user_id || auth()->user()->hasRole('admin')) && $question->answers->count() < 5)
-                    <button type="button" class="btn btn-link toggleAnswerForm">Add Answer</button>
-                    <form action="{{ route('answers.store', $question->id) }}" method="POST" class="answerForm" style="display:none;">
-                        @csrf
-                        <div class="form-group">
-                            <label for="answer">Add your answer:</label>
-                            <textarea name="answer" id="answer" rows="2" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit Answer</button>
-                    </form>
-                @elseif ($question->answers->count() >= 5)
-                    <p>The maximum number of answers has been reached (5 answers).</p>
-                @endif </div>
-        @empty
-            <p>No questions yet.</p>
-        @endforelse
-
-        <!-- Add Question Form Toggle -->
-        <button type="button" class="btn btn-link" id="toggleQuestionForm">Ask a Question</button>
-        <form action="{{ route('questions.store', $forum->id) }}" method="POST" id="questionForm" style="display:none;" class="mt-4">
-            @csrf
-            <div class="form-group">
-                <label for="question">Ask a question:</label>
-                <textarea name="question" id="question" rows="3" class="form-control" required></textarea>
-            </div>
-
             <button type="submit" class="btn btn-primary">Submit Question</button>
         </form>
     </div>
-    <div class="mb-5"></div> <!-- Menambahkan elemen kosong untuk memberikan ruang di bawah halaman -->
-    <a href="{{ route('forums.index') }}" class="btn btn-success">Back</a> <!-- Tombol Back selalu terlihat -->
-    <div class="mb-5"></div> <!-- Menambahkan ruang di bagian bawah -->
+
+    <!-- Back Button -->
+    <div class="mt-3 mb-5"> <!-- Menambahkan margin atas dan bawah pada tombol Back -->
+        <a href="{{ route('forums.index') }}" class="btn btn-success">Back</a>
+    </div>
 </div>
 </body>
 </html>
