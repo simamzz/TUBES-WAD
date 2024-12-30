@@ -40,4 +40,35 @@ class ForumController extends Controller
         return view('forums.show', compact('forum'));
     }
 
+    // Method untuk menampilkan form edit forum
+    public function edit($id)
+    {
+        $forum = Forum::findOrFail($id); // Ambil forum berdasarkan ID
+        return view('forums.edit', compact('forum')); // Tampilkan form edit dengan data forum
+    }
+
+    // Method untuk update forum
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+
+        $forum = Forum::findOrFail($id); // Ambil forum berdasarkan ID
+        $forum->update([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('forums.index')->with('success', 'Forum updated successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $forum = Forum::findOrFail($id);
+        $forum->delete();
+
+        return redirect()->route('forums.index')->with('success', 'Forum deleted successfully!');
+    }
 }

@@ -68,7 +68,6 @@ Route::get('/forum', function () {
     return view('forums.index', compact('forums'));
 })->name('forum');
 
-// Rute Forum
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('forums', ForumController::class)->except(['show', 'index']);
 });
