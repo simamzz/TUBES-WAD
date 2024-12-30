@@ -37,96 +37,95 @@
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter your name" required>
+                        <input type="text" name="nama" class="form-control" id="nama" placeholder="Enter your name" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">NIM</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter your nim" required>
+                        <input type="text" name="nim" class="form-control" id="nim" placeholder="Enter your nim" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Class</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter your class" required>
+                        <input type="text" name="kelas" class="form-control" id="kelas" placeholder="Enter your class" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Semester</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter your semester" required>
+                        <input type="text" name="semester" class="form-control" id="semester" placeholder="Enter your semester" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Generation</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter your generation" required>
+                        <input type="text" name="angkatan" class="form-control" id="angkatan" placeholder="Enter your generation" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Number</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter your number" required>
+                        <input type="text" name="no_telepon" class="form-control" id="no_telepon" placeholder="Enter your number" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter your email" required>
+                        <input type="text" name="email" class="form-control" id="email" placeholder="Enter your email" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Tentor Subject</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter your tentor subject" required>
+                        <input type="text" name="tentor_matkul" class="form-control" id="tentor_matkul" placeholder="Enter your tentor subject" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Subject Score</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter your subject score" required>
+                        <input type="text" name="nilai_matkul" class="form-control" id="nilai_matkul" placeholder="Enter your subject score" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">GPA</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter your gpa" required>
+                        <input type="text" name="IPK" class="form-control" id="IPK" placeholder="Enter your gpa" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="description" class="col-sm-2 col-form-label">Your Background</label>
                     <div class="col-sm-10">
-                        <textarea name="description" class="form-control" id="description" rows="3" 
+                        <textarea name="pengalaman_tentor" class="form-control" id="pengalaman_tentor" rows="3" 
                                 placeholder="Enter your background" required></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="description" class="col-sm-2 col-form-label">Your Reason</label>
                     <div class="col-sm-10">
-                        <textarea name="description" class="form-control" id="description" rows="3" 
+                        <textarea name="alasan" class="form-control" id="alasan" rows="3" 
                                 placeholder="Enter your reason" required></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="description" class="col-sm-2 col-form-label">Your Program for Tencom</label>
                     <div class="col-sm-10">
-                        <textarea name="description" class="form-control" id="description" rows="3" 
+                        <textarea name="program" class="form-control" id="program" rows="3" 
                                 placeholder="Enter your program" required></textarea>
                     </div>
                 </div>
                 <hr>
                 @csrf
-                <!-- Image -->
+                <!-- File -->
                 <div class="form-group">
-                    <label for="image">Upload Image</label>
-                    <input type="file" class="form-control" id="image" name="image">
+                    <label for="file">Upload File</label>
+                    <input type="file" class="form-control" id="file" name="file">
                 </div>
-                
-                <button type="submit" class="btn btn-primary">Submit</button>
+
 
                 <div class="form-group">
-                    <a href="{{ route('events.index') }}" class="btn btn-success">Cancel</a>
+                    <a href="{{ route('rekruits.index') }}" class="btn btn-success">Cancel</a>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>

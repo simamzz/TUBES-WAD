@@ -7,6 +7,8 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ForumController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserRoleController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Answer;
 use App\Models\Question;
@@ -68,12 +70,20 @@ Route::get('/forum', function () {
     return view('forums.index', compact('forums'));
 })->name('forum');
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('forums', ForumController::class)->except(['show', 'index']);
+});
+
+// Rute untuk semua pengguna (Index dan Show dapat dilihat semua user)
+Route::resource('forums', ForumController::class)->only(['index', 'show']);
+Route::post('forums/{forum}/questions', [QuestionController::class, 'store'])->name('questions.store')->middleware('auth');
+Route::post('questions/{question}/answers', [AnswerController::class, 'store'])->name('answers.store')->middleware('auth');
+
 // navigasi rekruitasi
 Route::get('/rekruits', function () {
     $rekruits = Rekruit::all();
     return view('rekruits.index', compact('rekruits'));
 })->name('rekruits');
-
 
 // navigasi article
 Route::get('/article', function () {
@@ -89,6 +99,69 @@ Route::group(['middleware' => ['permission:create users|view users|edit users|de
     });
 });
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 require __DIR__ . '/auth.php';
+
+// Rekruit Routes
+Route::get('/rekruit', [RekruitController::class, 'index'])->name('rekruits.index');
+Route::get('/rekruit/create', [RekruitController::class, 'create'])->name('rekruits.create');
+Route::post('/rekruit', [RekruitController::class, 'store'])->name('rekruits.store');
+Route::get('/rekruit/{rekruit}/edit', [RekruitController::class, 'edit'])->name('rekruits.edit');
+Route::put('/rekruit/{rekruit}', [RekruitController::class, 'update'])->name('rekruits.update');
+Route::delete('/rekruit/{rekruit}', [RekruitController::class, 'destroy'])->name('rekruits.destroy');
+
+// Testimonial Routes
+Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index'); // Show all testimonials
+Route::get('/testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create'); // Show form to create testimonial
+Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store'); // Save new testimonial
+Route::get('/testimonials/{testimonial}', [TestimonialController::class, 'show'])->name('testimonials.show'); // Show a single testimonial
+Route::get('/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit'); // Show form to edit testimonial
+Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('testimonials.update'); // Update testimonial
+Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy'); // Delete testimonial
+
+// Rekruit Events
+Route::get('/events', [EventController::class, 'index'])->name('events.index');
+Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
+Route::post('/events', [EventController::class, 'store'])->name('events.store');
+Route::get('/events/{events}/edit', [EventController::class, 'edit'])->name('events.edit');
+Route::put('/events/{events}', [EventController::class, 'update'])->name('events.update');
+Route::delete('/events/{events}', [EventController::class, 'destroy'])->name('events.destroy');
+
+// Roles
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('/roles', function () {
+        return view('roles.index');
+    })->name('roles.index');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/roles', [UserRoleController::class, 'index'])->name('roles.index');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('roles', [UserRoleController::class, 'index'])->name('roles.index');
+    Route::get('roles/{user}/edit', [UserRoleController::class, 'edit'])->name('roles.edit');
+    Route::put('roles/{user}', [UserRoleController::class, 'update'])->name('roles.update');
+});
+
+// Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Roles
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('/roles', function () {
+        return view('roles.index');
+    })->name('roles.index');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/roles', [UserRoleController::class, 'index'])->name('roles.index');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('roles', [UserRoleController::class, 'index'])->name('roles.index');
+    Route::get('roles/{user}/edit', [UserRoleController::class, 'edit'])->name('roles.edit');
+    Route::put('roles/{user}', [UserRoleController::class, 'update'])->name('roles.update');
+});
+
+// Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
