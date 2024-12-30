@@ -6,19 +6,9 @@ use Illuminate\Support\Facades\Session;
 @endphp
 
 @section('content')
-    <h1>Daftar Ulasan</h1>
-    
-    {{-- Tombol Add Testimonial --}}
+    <h1>List of Testimonial</h1>
     <a href="{{ route('testimonials.create') }}" class="btn btn-primary mb-3">Add Testimonial</a>
 
-    {{-- Pesan sukses jika ada --}}
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
-
-    {{-- Tabel Testimonials --}}
     <table class="table table-striped">
         <thead>
             <tr>
@@ -39,18 +29,13 @@ use Illuminate\Support\Facades\Session;
                     <td>{{ ucfirst($testimonial->category) }}</td>
                     <td>{{ Str::limit($testimonial->testimonial) }}</td>
                     <td>
-                        {{-- Tombol Show --}}
-                        <a href="{{ route('testimonials.show', $testimonial->id) }}" class="btn btn-info btn-sm">Show</a>
-
-                        {{-- Tombol Edit --}}
-                        <a href="{{ route('testimonials.edit', $testimonial->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        
-                        {{-- Tombol Delete --}}
-                        <form action="{{ route('testimonials.destroy', $testimonial->id) }}" method="POST" class="d-inline">
+                        <a href="{{ route('testimonials.show', $testimonial) }}" class="btn btn-info btn-sm">Show</a>
+                        <a href="{{ route('testimonials.edit', $testimonial) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('testimonials.destroy', $testimonial) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
                     </td>
                 </tr>
             @endforeach

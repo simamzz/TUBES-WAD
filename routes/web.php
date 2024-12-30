@@ -50,11 +50,6 @@ Route::get('/course', function () {
     return view('course', compact('course'));
 })->name('course');
 
-// navigasi testimoni
-Route::get('/testimoni', function () {
-    $testimonials = Testimonial::all();
-    return view('testimonials.index', compact('testimonials'));
-})->name('testimoni');
 
 // navigasi forum
 Route::get('/forum', function () {
@@ -75,6 +70,12 @@ Route::get('/rekruits', function () {
     $rekruits = Rekruit::all();
     return view('rekruits.index', compact('rekruits'));
 })->name('rekruits');
+
+// navigasi testimoni
+Route::get('/testimonials', function () {
+    $testimonials = Testimonial::all();
+    return view('testimonials.index', compact('testimonials'));
+})->name('testimonials');
 
 // navigasi article
 Route::get('/article', function () {
@@ -103,13 +104,13 @@ Route::put('/rekruit/{rekruit}', [RekruitController::class, 'update'])->name('re
 Route::delete('/rekruit/{rekruit}', [RekruitController::class, 'destroy'])->name('rekruits.destroy');
 
 // Testimonial Routes
-Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index'); // Show all testimonials
-Route::get('/testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create'); // Show form to create testimonial
-Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store'); // Save new testimonial
-Route::get('/testimonials/{testimonial}', [TestimonialController::class, 'show'])->name('testimonials.show'); // Show a single testimonial
-Route::get('/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit'); // Show form to edit testimonial
-Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('testimonials.update'); // Update testimonial
-Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy'); // Delete testimonial
+# Route::get('/testimonial', [TestimonialController::class, 'index'])->name('testimonials.index');
+# Route::get('/testimonial/create', [TestimonialController::class, 'create'])->name('testimonials.create'); 
+# Route::post('/testimonial', [TestimonialController::class, 'store'])->name('testimonials.store'); 
+# Route::get('/testimonial/{testimonial}', [TestimonialController::class, 'show'])->name('testimonials.show');
+# Route::get('/testimonial/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit'); 
+# Route::put('/testimonial/{testimonial}', [TestimonialController::class, 'update'])->name('testimonials.update');
+# Route::delete('/testimonial/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy'); 
 # <<<<<<< HEAD
 # =======
 # <<<<<<< Updated upstream
