@@ -21,13 +21,34 @@ use Illuminate\Support\Str;
             </div>
 
 <!-- Menampilkan daftar event -->
+<table class="transparent">
+    <td>
+        <div class="py-4 d-flex align-items-center">
+            <img src="{{ asset('assets/staff.png') }}" alt="Staff Image" class="img-fluid" style="width: 650px; height: auto; margin-right: 20px;">
+            <div>
+                <h4>WELCOME TO TENCOM</h4>
+                <p>Website Organisasi di Sistem Informasi Telkom University, 
+                    Mahasiswa dapat menemukan berbagai informasi terkait kegiatan, acara, 
+                    dan program yang diselenggarakan oleh organisasi. Selain itu, mahasiswa juga
+                    dapat berpartisipasi dalam forum diskusi, mengikuti kursus, dan mendapatkan informasi 
+                    mengenai rekrutmen anggota baru. Selamat datang dan selamat bergabung!</p>
+                    
+                <p>Di sini, kami berkomitmen untuk menyediakan platform yang mendukung pengembangan diri 
+                    dan kolaborasi antar mahasiswa. Dengan berbagai fitur yang kami tawarkan, seperti 
+                    kalender acara, forum diskusi, dan kursus online, kami berharap dapat membantu mahasiswa 
+                    untuk tetap terhubung dan terlibat dalam berbagai kegiatan yang bermanfaat. Jangan ragu 
+                    untuk menjelajahi situs ini dan menemukan peluang baru untuk belajar dan berkembang.</p>
+            </div>
+        </div>
+    </td>
+</table>
 
 <!-- Events -->
-<table class="table table-bordered">
+<table class="transparent">
     <tr>
         <td>
             <div class="py-4 text-center">
-                <h4>List Event</h4>
+                <h4></h4>
                 @if($events->isEmpty())
                     <p>No events available.</p>
                 @else
