@@ -8,6 +8,7 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ForumController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Course;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Forum;
@@ -44,8 +45,8 @@ Route::get('/event', function () {
 
 // navigasi course
 Route::get('/course', function () {
-    $events = Event::all(); // ubah sesuai controller masing2
-    return view('course', compact('course'));
+    $courses = Course::all();
+    return view('course.index', compact('courses'));
 })->name('course');
 
 // navigasi testimoni
@@ -107,3 +108,24 @@ Route::get('/testimonials/{testimonial}', [TestimonialController::class, 'show']
 Route::get('/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit'); // Show form to edit testimonial
 Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('testimonials.update'); // Update testimonial
 Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy'); // Delete testimonial
+
+// Course Routes
+Route::get('/course', function () {
+    $courses = Course::all();
+    return view('course.index', compact('courses'));
+})->name('course');
+
+Route::get('/course/create', function () {
+    return view('course.create');
+})->name('course.create');
+
+Route::post('/course', function () {
+    $data = request()->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+    ]);
+
+    Course::create($data);
+
+    return redirect()->route('course');
+})->name('course.store');
