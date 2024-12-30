@@ -21,7 +21,7 @@
                             @if($article->image)
                                 <img src="{{ asset('storage/' . $article->image) }}" alt="Article Image" class="img-fluid mb-3">
                             @endif
-                            <div>{{ $article->content }}</div>
+                            <div>{!! nl2br(e($article->content)) !!}</div>
                             @if(Auth::user() && Auth::user()->hasRole('admin'))
                             <div class="d-flex gap-2 mt-4">
                                 <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-success">Edit</a>

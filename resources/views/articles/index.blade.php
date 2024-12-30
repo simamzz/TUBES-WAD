@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Events</title>
+        <title>Article</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Session;
                                 <h5 class="card-title">
                                     <a href="{{ route('articles.show', $article->id) }}" class="text-dark">{{ $article->title }}</a>
                                 </h5>
-                                <p class="card-text text-muted small">{{ Str::limit($article->content, 100) }}</p>
+                                <p class="card-text text-muted small">{{ Str::limit(strip_tags(nl2br(e($article->content))), 100) }}</p>
                             <p class="card-text text-muted small">By {{ $article->user->name }} | {{ $article->created_at->format('d-m-Y H:i') }}</p>
                             @if(Auth::user() && Auth::user()->hasRole('admin'))
                                 <div class="d-flex gap-2 mt-2">
