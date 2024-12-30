@@ -88,7 +88,8 @@ Route::group(['middleware' => ['permission:create users|view users|edit users|de
     });
 });
 
-#<<<<<<< Updated upstream
+# <<<<<<< Updated upstream
+# <<<<<<< Updated upstream
 require __DIR__ . '/auth.php';
 
 // Rekruit Routes
@@ -107,3 +108,8 @@ Route::get('/testimonials/{testimonial}', [TestimonialController::class, 'show']
 Route::get('/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit'); // Show form to edit testimonial
 Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('testimonials.update'); // Update testimonial
 Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy'); // Delete testimonial
+# =======
+# <<<<<<< Updated upstream
+# <<<<<<< Updated upstream
+require __DIR__ . '/auth.php';
+# >>>>>>> Stashed changes
