@@ -129,6 +129,28 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/roles', [UserRoleController::class, 'index'])->name('roles.index');
 });
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('roles', [UserRoleController::class, 'index'])->name('roles.index');
+    Route::get('roles/{user}/edit', [UserRoleController::class, 'edit'])->name('roles.edit');
+    Route::put('roles/{user}', [UserRoleController::class, 'update'])->name('roles.update');
+});
+
+// Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
+// Roles
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('/roles', function () {
+        return view('roles.index');
+    })->name('roles.index');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/roles', [UserRoleController::class, 'index'])->name('roles.index');
+});
+
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('roles', [UserRoleController::class, 'index'])->name('roles.index');
     Route::get('roles/{user}/edit', [UserRoleController::class, 'edit'])->name('roles.edit');
