@@ -49,6 +49,7 @@
                 </form>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <h6>Jawaban:</h6>
                 @foreach($question->answers as $answer)
                     <p>- <strong>{{ $answer->user->name }}</strong>: {{ $answer->answer }}</p>
@@ -57,6 +58,8 @@
         </div>
     @endforeach
 =======
+=======
+>>>>>>> Stashed changes
                 <!-- Answer Form Toggle -->
                 @if ((auth()->user()->id === $question->user_id || auth()->user()->hasRole('admin')) && $question->answers->count() < 5)
                     <button type="button" class="btn btn-link toggleAnswerForm">Add Answer</button>
@@ -89,6 +92,9 @@
     <div class="mb-5"></div> <!-- Menambahkan elemen kosong untuk memberikan ruang di bawah halaman -->
     <a href="{{ route('forums.index') }}" class="btn btn-success">Back</a> <!-- Tombol Back selalu terlihat -->
     <div class="mb-5"></div> <!-- Menambahkan ruang di bagian bawah -->
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 </div>
 @endsection
