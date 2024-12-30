@@ -50,6 +50,7 @@
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <h6>Jawaban:</h6>
                 @foreach($question->answers as $answer)
                     <p>- <strong>{{ $answer->user->name }}</strong>: {{ $answer->answer }}</p>
@@ -58,6 +59,8 @@
         </div>
     @endforeach
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                 <!-- Answer Form Toggle -->
@@ -93,6 +96,9 @@
     <a href="{{ route('forums.index') }}" class="btn btn-success">Back</a> <!-- Tombol Back selalu terlihat -->
     <div class="mb-5"></div> <!-- Menambahkan ruang di bagian bawah -->
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
