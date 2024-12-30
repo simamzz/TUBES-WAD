@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Forum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ForumController extends Controller
 {
@@ -28,7 +29,7 @@ class ForumController extends Controller
         Forum::create([
             'title' => $request->title,
             'description' => $request->description,
-            'user_id' => auth()->id(),
+            'user_id' => Auth::user()->id,
         ]);
 
         return redirect()->route('forums.index')->with('success', 'Forum created successfully!');
