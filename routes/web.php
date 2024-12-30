@@ -7,6 +7,8 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ForumController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserRoleController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Answer;
 use App\Models\Question;

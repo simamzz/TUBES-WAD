@@ -29,7 +29,7 @@
 
             <!-- Page Content -->
             <main>
-                @yield('content') <!-- Ensure child views use @section('content') -->
+                @yield('content')
             </main>
         </div>
     </body>
