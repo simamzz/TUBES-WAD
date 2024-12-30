@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Create Testimoni')
+@section('title', 'Create Testimonial')
 
 @section('content')
     <html lang="en">
@@ -8,22 +8,23 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Create Testimoni</title>
+        <title>Create Testimonial</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
-            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJw8ERdknLPMO" crossorigin="anonymous">
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
         <div class="container">
             <div class="form-row">
                 <div class="col-lg-12">
-                    <h3 class="mt-4">Create New Testimoni</h3>
+                    <h3 class="mt-4">Create Testimonial</h3>
                 </div>
             </div>
             <br>
 
+            {{-- Error Handling --}}
             @if ($errors->all())
                 <div class="alert alert-danger">
-                    <strong>Whoops! </strong> There are some problems with your input.<br>
+                    <strong>Whoops!</strong> There are some problems with your input.<br>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -32,43 +33,77 @@
                 </div>
             @endif
 
+            {{-- Form --}}
             <form action="{{ route('testimonials.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+
+                {{-- User ID --}}
                 <div class="form-group row">
                     <label for="user_id" class="col-sm-2 col-form-label">User ID</label>
                     <div class="col-sm-10">
-                        <input type="text" name="user_id" class="form-control" id="user_id" placeholder="Enter user ID" required>
+                        <input 
+                            type="text" 
+                            name="user_id" 
+                            class="form-control" 
+                            id="user_id" 
+                            placeholder="Enter User ID" 
+                            required>
                     </div>
                 </div>
+
+                {{-- Name --}}
                 <div class="form-group row">
                     <label for="name" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        <textarea name="name" class="form-control" id="name" rows="3" 
-                                placeholder="Enter name" required></textarea>
+                        <input
+                            type="text"
+                            name="name" 
+                            class="form-control" 
+                            id="name" 
+                            rows="3" 
+                            placeholder="Enter Name" 
+                            required></textarea>
                     </div>
                 </div>
+
+                {{-- Category --}}
                 <div class="form-group row">
-                    <label for="category" class="col-sm-2 col-form-label">Testimonial Category</label>
+                    <label for="category" class="col-sm-2 col-form-label">Category</label>
                     <div class="col-sm-10">
-                        <select name="category" class="form-control" id="category" required>
+                        <select 
+                            name="category" 
+                            class="form-control" 
+                            id="category" 
+                            required>
                             <option value="" disabled selected>-- Select Category --</option>
-                            <option value="website">Testimonial about Website</option>
-                            <option value="mentor">Testimonial about Mentor</option>
+                            <option value="website">Website</option>
+                            <option value="mentor">Mentor</option>
                         </select>
                     </div>
                 </div>
+
+                {{-- Testimonial --}}
                 <div class="form-group row">
-                    <label for="testimonial" class="col-sm-2 col-form-label">Testimoni</label>
+                    <label for="testimonial" class="col-sm-2 col-form-label">Testimonial</label>
                     <div class="col-sm-10">
-                        <input type="text" name="testimonial" class="form-control" id="testimonial" 
-                                placeholder="Enter testimonial description" required>
+                        <textarea 
+                            name="testimonial" 
+                            class="form-control" 
+                            id="testimonial" 
+                            rows="3" 
+                            placeholder="Enter Testimonial" 
+                            required></textarea>
                     </div>
                 </div>
+
                 <hr>
-                @csrf
-                <div class="form-group">
-                    <a href="{{ route('testimonials.index') }}" class="btn btn-success">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Save</button>
+
+                {{-- Buttons --}}
+                <div class="form-group row">
+                    <div class="col-sm-10 offset-sm-2">
+                        <a href="{{ route('testimonials.index') }}" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
                 </div>
             </form>
         </div>

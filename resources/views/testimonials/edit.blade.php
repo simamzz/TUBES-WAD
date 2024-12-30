@@ -44,7 +44,7 @@
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                    <textarea name="name" class="form-control" id="name" rows="3" placeholder="Name" required>{{ $testimonial->name }}</textarea>
+                    <input type="text" name="name" class="form-control" id="name" rows="3" placeholder="Enter Name" required>{{ $testimonial->name }}</textarea>
                 </div>
             </div>
             <div class="form-group row">
@@ -52,8 +52,8 @@
                 <div class="col-sm-10">
                     <select name="category" class="form-control" id="category" required>
                         <option value="" disabled>-- Select Category --</option>
-                        <option value="website" {{ $testimonial->category == 'website' ? 'selected' : '' }}>Testimonial about Website</option>
-                        <option value="mentor" {{ $testimonial->category == 'mentor' ? 'selected' : '' }}>Testimonial about Mentor</option>
+                        <option value="website" {{ $testimonial->category == 'website' ? 'selected' : '' }}>Website</option>
+                        <option value="mentor" {{ $testimonial->category == 'mentor' ? 'selected' : '' }}>Mentor</option>
                     </select>
                 </div>
             </div>
@@ -63,8 +63,8 @@
                     <input type="text" name="testimonial" class="form-control" id="testimonial" value="{{ $testimonial->testimonial }}" placeholder="Enter Testimonial" required>
                 </div>
             </div>
-            <div class="form-group">
-                <a href="{{ route('testimonials.index') }}" class="btn btn-success">Cancel</a>
+            <div class="form-group d-flex justify-content-between">
+                <a href="{{ route('testimonials.index') }}" class="btn btn-secondary">Cancel</a>
                 <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </form>

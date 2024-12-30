@@ -23,7 +23,7 @@ class TestimonialController extends Controller
     // Menyimpan testimoni baru
     public function store(Request $request)
     {
-        //cvalidasi data input dari form
+        // validasi data input dari form
         $validatedData = $request->validate([
             'user_id' => 'required|exists:users,id', //memastikan user_id ada dan valid
             'name' => 'required|string',
@@ -31,7 +31,7 @@ class TestimonialController extends Controller
             'testimonial' => 'required|string',
         ]);
 
-        //cMenyimpan testimoni baru ke database
+        // Menyimpan testimoni baru ke database
         Testimonial::create($validatedData);
 
         // Redirect dengan pesan sukses
@@ -45,7 +45,7 @@ class TestimonialController extends Controller
         $testimonial = Testimonial::findOrFail($id);
 
         // Menampilkan halaman
-        return view('testimonial.show', compact('testimonial'));
+        return view('testimonials.show', compact('testimonial'));
     }
 
     // Menampilkan form edit testimonial

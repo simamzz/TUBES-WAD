@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); //relasi ke tabel users
             $table->string('name')->nullable();
-            $table->string('category')->nullable(); //kategori ulasan (mentor/platform)
+            $table->string('category')->nullable(); //kategori ulasan (mentor/website)
             $table->text('testimonial')->nullable(); //isi ulasan
             $table->timestamps();
         });

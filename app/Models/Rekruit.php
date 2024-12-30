@@ -25,5 +25,6 @@ class Rekruit extends Model
         'pengalaman_tentor',
         'alasan',
         'program',
+        'file',
     ];
 }

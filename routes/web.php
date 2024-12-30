@@ -71,6 +71,15 @@ Route::get('/forum', function () {
     return view('forums.index', compact('forums'));
 })->name('forum');
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('forums', ForumController::class)->except(['show', 'index']);
+});
+
+// Rute untuk semua pengguna (Index dan Show dapat dilihat semua user)
+Route::resource('forums', ForumController::class)->only(['index', 'show']);
+Route::post('forums/{forum}/questions', [QuestionController::class, 'store'])->name('questions.store')->middleware('auth');
+Route::post('questions/{question}/answers', [AnswerController::class, 'store'])->name('answers.store')->middleware('auth');
+
 // navigasi rekruitasi
 Route::get('/rekruits', function () {
     $rekruits = Rekruit::all();
@@ -135,7 +144,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/roles', [UserRoleController::class, 'index'])->name('roles.index');
 });
 
-
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('roles', [UserRoleController::class, 'index'])->name('roles.index');
     Route::get('roles/{user}/edit', [UserRoleController::class, 'edit'])->name('roles.edit');
@@ -164,4 +172,3 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
