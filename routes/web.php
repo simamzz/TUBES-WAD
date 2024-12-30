@@ -9,6 +9,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserRoleController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Answer;
 use App\Models\Question;
@@ -76,11 +77,16 @@ Route::get('/rekruits', function () {
     return view('rekruits.index', compact('rekruits'));
 })->name('rekruits');
 
+
 // navigasi article
-Route::get('/article', function () {
-    $events = Event::all(); // ubah sesuai controller masing2
-    return view('article', compact('article'));
-})->name('article');
+Route::resource('articles', ArticleController::class)->names([
+    'index' => 'articles.index',
+    'create' => 'articles.create',
+]);
+#Route::get('/article', function () {
+   # $events = Event::all(); // ubah sesuai controller masing2
+    #return view('article', compact('article'));
+#})->name('article');
 // NAVIGASI LINE ----------------------------
 
 // Spatie Permission Routes
@@ -90,7 +96,6 @@ Route::group(['middleware' => ['permission:create users|view users|edit users|de
     });
 });
 
-#<<<<<<< Updated upstream
 require __DIR__ . '/auth.php';
 
 // Rekruit Routes
@@ -100,6 +105,7 @@ Route::post('/rekruit', [RekruitController::class, 'store'])->name('rekruits.sto
 Route::get('/rekruit/{rekruit}/edit', [RekruitController::class, 'edit'])->name('rekruits.edit');
 Route::put('/rekruit/{rekruit}', [RekruitController::class, 'update'])->name('rekruits.update');
 Route::delete('/rekruit/{rekruit}', [RekruitController::class, 'destroy'])->name('rekruits.destroy');
+
 
 // Testimonial Routes
 Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index'); // Show all testimonials
@@ -158,3 +164,4 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
