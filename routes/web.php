@@ -107,3 +107,11 @@ Route::get('/testimonials/{testimonial}', [TestimonialController::class, 'show']
 Route::get('/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit'); // Show form to edit testimonial
 Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('testimonials.update'); // Update testimonial
 Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy'); // Delete testimonial
+
+// Rekruit Events
+Route::get('/events', [EventController::class, 'index'])->name('events.index');
+Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
+Route::post('/events', [EventController::class, 'store'])->name('events.store');
+Route::get('/events/{events}/edit', [EventController::class, 'edit'])->name('events.edit');
+Route::put('/events/{events}', [EventController::class, 'update'])->name('events.update');
+Route::delete('/events/{events}', [EventController::class, 'destroy'])->name('events.destroy');
