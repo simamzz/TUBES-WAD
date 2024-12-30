@@ -9,6 +9,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Forum Details</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#toggleQuestionForm').click(function() {
+                $('#questionForm').toggle(); // Toggle visibility of the question form
+            });
+
+            $('.toggleAnswerForm').click(function() {
+                $(this).siblings('.answerForm').toggle(); // Toggle visibility of the answer form
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="container">
@@ -65,9 +77,10 @@
                     <p>No answers yet.</p>
                 @endif
 
-                <!-- Answer Form (Admin Only) -->
-                @if (auth()->user()->hasRole('admin') && $question->answers->count() === 0)
-                    <form action="{{ route('answers.store', $question->id) }}" method="POST" class="mt-3">
+                <!-- Answer Form Toggle -->
+                @if ((auth()->user()->id === $question->user_id || auth()->user()->hasRole('admin')) && $question->answers->count() < 5)
+                    <button type="button" class="btn btn-link toggleAnswerForm">Add Answer</button>
+                    <form action="{{ route('answers.store', $question->id) }}" method="POST" class="answerForm" style="display:none;">
                         @csrf
                         <div class="form-group">
                             <label for="answer">Add your answer:</label>
@@ -75,26 +88,27 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Submit Answer</button>
                     </form>
-                @endif
-            </div>
+                @elseif ($question->answers->count() >= 5)
+                    <p>The maximum number of answers has been reached (5 answers).</p>
+                @endif </div>
         @empty
             <p>No questions yet.</p>
         @endforelse
 
-        <!-- Add Question Form -->
-        <form action="{{ route('questions.store', $forum->id) }}" method="POST" class="mt-4">
+        <!-- Add Question Form Toggle -->
+        <button type="button" class="btn btn-link" id="toggleQuestionForm">Ask a Question</button>
+        <form action="{{ route('questions.store', $forum->id) }}" method="POST" id="questionForm" style="display:none;" class="mt-4">
             @csrf
             <div class="form-group">
                 <label for="question">Ask a question:</label>
                 <textarea name="question" id="question" rows="3" class="form-control" required></textarea>
             </div>
-            <div class="d-flex justify-content-between"> <!-- Flex container for buttons -->
-                <button type="submit" class="btn btn-primary">Submit Question</button>
-                <a href="{{ route('forums.index') }}" class="btn btn-success">Back</a>
-            </div>
+            <button type="submit" class="btn btn-primary">Submit Question</button>
         </form>
     </div>
     <div class="mb-5"></div> <!-- Menambahkan elemen kosong untuk memberikan ruang di bawah halaman -->
+    <a href="{{ route('forums.index') }}" class="btn btn-success">Back</a> <!-- Tombol Back selalu terlihat -->
+    <div class="mb-5"></div> <!-- Menambahkan ruang di bagian bawah -->
 </div>
 </body>
 </html>
