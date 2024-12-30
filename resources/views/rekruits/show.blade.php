@@ -21,91 +21,91 @@
         <div class="form-group row">
             <label for="eventTitle" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
-                {{ $recruit->nama }}
+                {{ $rekruit->nama }}
             </div>
         </div>
         <div class="form-group row">
             <label for="eventDescription" class="col-sm-2 col-form-label">NIM</label>
             <div class="col-sm-10">
-                {{ $recruit->nim }}
+                {{ $rekruit->nim }}
             </div>
         </div>
         <div class="form-group row">
             <label for="eventDate" class="col-sm-2 col-form-label">Class</label>
             <div class="col-sm-10">
-                {{ $recruit->kelas }}
+                {{ $rekruit->kelas }}
             </div>
         </div>
         <div class="form-group row">
             <label for="eventLocation" class="col-sm-2 col-form-label">Semester</label>
             <div class="col-sm-10">
-                {{ $recruit->semester }}
+                {{ $rekruit->semester }}
             </div>
         </div>
         <div class="form-group row">
             <label for="eventDate" class="col-sm-2 col-form-label">Generation</label>
             <div class="col-sm-10">
-                {{ $recruit->angkatan }}
+                {{ $rekruit->angkatan }}
             </div>
         </div>
         <div class="form-group row">
             <label for="eventLocation" class="col-sm-2 col-form-label">Number</label>
             <div class="col-sm-10">
-                {{ $recruit->no_telepon }}
+                {{ $rekruit->no_telepon }}
             </div>
         </div>
         <div class="form-group row">
             <label for="eventLocation" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                {{ $recruit->email }}
+                {{ $rekruit->email }}
             </div>
         </div>
         <div class="form-group row">
             <label for="eventDate" class="col-sm-2 col-form-label">Tentor Subject</label>
             <div class="col-sm-10">
-                {{ $recruit->tentor_matkul }}
+                {{ $rekruit->tentor_matkul }}
             </div>
         </div>
         <div class="form-group row">
             <label for="eventLocation" class="col-sm-2 col-form-label">Subject Score</label>
             <div class="col-sm-10">
-                {{ $recruit->nilai_matkul }}
+                {{ $rekruit->nilai_matkul }}
             </div>
         </div>
         <div class="form-group row">
             <label for="eventLocation" class="col-sm-2 col-form-label">GPA</label>
             <div class="col-sm-10">
-                {{ $recruit->IPK }}
+                {{ $rekruit->IPK }}
             </div>
         </div>
         <div class="form-group row">
             <label for="eventDate" class="col-sm-2 col-form-label">Background</label>
             <div class="col-sm-10">
-                {{ $recruit->pengalaman_tentor }}
+                {{ $rekruit->pengalaman_tentor }}
             </div>
         </div>
         <div class="form-group row">
             <label for="eventLocation" class="col-sm-2 col-form-label">Reason</label>
             <div class="col-sm-10">
-                {{ $recruit->alasan }}
+                {{ $rekruit->alasan }}
             </div>
         </div>
         <div class="form-group row">
             <label for="eventLocation" class="col-sm-2 col-form-label">Program</label>
             <div class="col-sm-10">
-                {{ $recruit->program }}
+                {{ $rekruit->program }}
             </div>
         </div>
-        <!-- image -->
+        
+        <!-- file -->
         <div class="form-group">
-            <label for="image">Image:</label>
-            @if ($rekruit->image)
-            <img src="{{ asset('storage/' . $rekruit->image) }}" alt="Oprec Staff Image" class="img-fluid showPhoto">
+            <label for="files">File:</label>
+            @if ($rekruit->files)
+            <img src="{{ asset('storage/' . $rekruit->files) }}" alt="Recruitment File" class="img-fluid showFile">
             @else
-            <p>No image uploaded</p>
+            <p>No file uploaded</p>
             @endif
         </div>
-        
 
         <div class="form-group row">
             <div class="col-md-12">
@@ -118,11 +118,3 @@
 </html>
 
 @endsection
-
-<style>
-    .showPhoto {
-        width: 100px;
-        height: 100px;
-        margin: left;
-    }
-</style>
