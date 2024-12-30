@@ -13,25 +13,32 @@ use Illuminate\Support\Facades\Session;
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Recruitment Staff</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <style>
-            .custom-container {
-                margin-left: 50px;
-                margin-right: auto;
-            }
-        </style>
     </head>
     <body>
-    <div class="container custom-container">
+    <div class="container">
+    <div class="alert alert-primary text-center mt-4" style="border-radius: 10px; padding: 20px; font-size: 1rem;">
+        <h4 style="font-weight: bold;">Welcome to Our Tutor Recruitment Program!</h4>
+        <p>Are you ready to inspire and share your knowledge? Join us as a tutor and:</p>
+        <ul class="list-unstyled">
+            <li>✔ Empower eager learners</li>
+            <li>✔ Build your teaching skills</li>
+            <li>✔ Make a meaningful impact</li>
+        </ul>
+        <p>It’s simple to get started! Click below to apply and become part of something extraordinary. We can’t wait to see you shine! 🌟</p>
+    </div>
+
+
         <div class="row">
             <div class="col-md-10">
                 <h3 class="mt-4">Recruitment Staff</h3>
             </div>
 
-            
-            <div class="col-sm-2" style="margin-top: 20px;">
-                <a class="btn btn-primary" href="{{ route('rekruits.create') }}">Create New Form Recruitment</a>
+            <div class="col-sm-2 d-flex justify-content-end align-items-center" style="margin-top: 20px;">
+                <a class="btn btn-primary btn-sm px-4 py-2 shadow-sm" href="{{ route('rekruits.create') }}" style="border-radius: 20px; font-weight: bold;">
+                    + New Form
+                </a>
             </div>
-            
+
         </div> 
         <br>
 
@@ -48,18 +55,9 @@ use Illuminate\Support\Facades\Session;
                     <th scope="col">Name</th>
                     <th scope="col">NIM</th>
                     <th scope="col">Class</th>
-                    <th scope="col">Semester</th>
-                    <th scope="col">Generation</th>
-                    <th scope="col">Number</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Tentor Subject</th>
-                    <th scope="col">Subject Score</th>
-                    <th scope="col">GPA</th>
-                    <th scope="col">Background</th>
-                    <th scope="col">Reason</th>
-                    <th scope="col">Program</th>
-                    <th scope="col">File</th>
-                    
+                    <th scope="col">Create at</th>
+                    <th scope="col">Update at</th>
+                    <th scope="col">File</th>                    
                    
                     <th width="200px">Actions</th>
                     
@@ -74,16 +72,8 @@ use Illuminate\Support\Facades\Session;
                         </td>
                         <td>{{ $rekruit->nim }}</td>
                         <td>{{ $rekruit->kelas }}</td>
-                        <td>{{ $rekruit->semester }}</td>
-                        <td>{{ $rekruit->angkatan }}</td>
-                        <td>{{ $rekruit->no_telepon }}</td>
-                        <td>{{ $rekruit->email }}</td>
-                        <td>{{ $rekruit->tentor_matkul }}</td>
-                        <td>{{ $rekruit->nilai_matkul }}</td>
-                        <td>{{ $rekruit->IPK }}</td>
-                        <td>{{ $rekruit->pengalaman_tentor }}</td>
-                        <td>{{ $rekruit->alasan }}</td>
-                        <td>{{ $rekruit->program }}</td>
+                        <td>{{ $rekruit->created_at }}</td>
+                        <td>{{ $rekruit->updated_at }}</td>
 
                         <td class="showFile">
                             @if ($rekruit->file)
@@ -100,8 +90,19 @@ use Illuminate\Support\Facades\Session;
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                             </form>
+
+                            @if ($rekruit->status === 'pending')
+                                <form action="{{ route('rekruits.accept', $rekruit->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('PATCH')
+                                    @role('admin')
+                                    <button type="submit" class="btn btn-sm btn-primary">Accept</button>
+                                    @endrole
+                                </form>
+                            @else
+                                <span class="badge badge-success">{{ ucfirst($rekruit->status) }}</span>
+                            @endif
                         </td>
-                        
                     </tr>
                 @endforeach
             </tbody>
@@ -114,5 +115,13 @@ use Illuminate\Support\Facades\Session;
         width: 100px;
         height: 100px;
         margin: auto;
+    }
+
+    .welcome-section {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 </style>

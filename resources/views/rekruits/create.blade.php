@@ -119,7 +119,7 @@
                 @csrf
                 <!-- File -->
                 <div class="form-group">
-                    <label for="file">Upload File</label>
+                    <label for="file">Upload CV</label>
                     <input type="file" class="form-control" id="file" name="file">
                 </div>
 

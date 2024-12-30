@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Rekruit;
+use App\Notifications\RekruitAcceptedNotification;
 
 use function Ramsey\Uuid\v1;
 
@@ -105,4 +106,24 @@ class RekruitController extends Controller
 
         return view('rekruits.show', compact('rekruit'));
     }
+
+    public function accept($id)
+    {
+        $rekruit = Rekruit::findOrFail($id);
+        $rekruit->status = 'accepted';
+        $rekruit->save();
+
+        // Kirim notifikasi jika user terkait ada
+        if ($rekruit->user) {
+            $rekruit->user->notify(new RekruitAcceptedNotification($rekruit));
+        } else {
+            return redirect()->route('rekruits.index')
+                ->with('error', 'Gagal mengirim notifikasi: user tidak ditemukan.');
+        }
+
+        return redirect()->route('rekruits.index')
+            ->with('success', 'Mahasiswa telah diterima sebagai tentor.');
+    }
+
+
 }
