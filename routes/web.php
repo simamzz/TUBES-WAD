@@ -91,6 +91,7 @@ Route::group(['middleware' => ['permission:create users|view users|edit users|de
     });
 });
 
+#<<<<<<< Updated upstream
 # <<<<<<< Updated upstream
 # <<<<<<< Updated upstream
 require __DIR__ . '/auth.php';
@@ -116,55 +117,21 @@ Route::delete('/rekruit/{rekruit}', [RekruitController::class, 'destroy'])->name
 # <<<<<<< Updated upstream
 # <<<<<<< Updated upstream
 require __DIR__ . '/auth.php';
-# >>>>>>> Stashed changes
-# =======
 
-// Rekruit Events
-Route::get('/events', [EventController::class, 'index'])->name('events.index');
-Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
-Route::post('/events', [EventController::class, 'store'])->name('events.store');
-Route::get('/events/{events}/edit', [EventController::class, 'edit'])->name('events.edit');
-Route::put('/events/{events}', [EventController::class, 'update'])->name('events.update');
-Route::delete('/events/{events}', [EventController::class, 'destroy'])->name('events.destroy');
+// Rekruit Routes
+Route::get('/rekruit', [RekruitController::class, 'index'])->name('rekruits.index');
+Route::get('/rekruit/create', [RekruitController::class, 'create'])->name('rekruits.create');
+Route::post('/rekruit', [RekruitController::class, 'store'])->name('rekruits.store');
+Route::get('/rekruit/{rekruit}', [RekruitController::class, 'show'])->name('rekruits.show');
+Route::get('/rekruit/{rekruit}/edit', [RekruitController::class, 'edit'])->name('rekruits.edit');
+Route::put('/rekruit/{rekruit}', [RekruitController::class, 'update'])->name('rekruits.update');
+Route::delete('/rekruit/{rekruit}', [RekruitController::class, 'destroy'])->name('rekruits.destroy');
 
-// Roles
-Route::group(['middleware' => ['role:admin']], function () {
-    Route::get('/roles', function () {
-        return view('roles.index');
-    })->name('roles.index');
-});
-
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/roles', [UserRoleController::class, 'index'])->name('roles.index');
-});
-
-
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('roles', [UserRoleController::class, 'index'])->name('roles.index');
-    Route::get('roles/{user}/edit', [UserRoleController::class, 'edit'])->name('roles.edit');
-    Route::put('roles/{user}', [UserRoleController::class, 'update'])->name('roles.update');
-});
-
-// Dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-// Roles
-Route::group(['middleware' => ['role:admin']], function () {
-    Route::get('/roles', function () {
-        return view('roles.index');
-    })->name('roles.index');
-});
-
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/roles', [UserRoleController::class, 'index'])->name('roles.index');
-});
-
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('roles', [UserRoleController::class, 'index'])->name('roles.index');
-    Route::get('roles/{user}/edit', [UserRoleController::class, 'edit'])->name('roles.edit');
-    Route::put('roles/{user}', [UserRoleController::class, 'update'])->name('roles.update');
-});
-
-// Dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-# >>>>>>> fc54c668954802feab188a12135e7fa467b96be4
+// Testimonial Routes
+Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index'); // Show all testimonials
+Route::get('/testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create'); // Show form to create testimonial
+Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store'); // Save new testimonial
+Route::get('/testimonials/{testimonial}', [TestimonialController::class, 'show'])->name('testimonials.show'); // Show a single testimonial
+Route::get('/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit'); // Show form to edit testimonial
+Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('testimonials.update'); // Update testimonial
+Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy'); // Delete testimonial
