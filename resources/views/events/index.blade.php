@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Session;
     <body>
     <div class="container">
         <div class="row">
-            <div >
+            <div class="col-md-10">
                 <h3 class="mt-4">Events</h3>
             </div>
 
