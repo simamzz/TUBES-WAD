@@ -30,7 +30,7 @@
                     <x-nav-link :href="route('testimoni')" :active="request()->routeIs('testimoni')">
                         {{ __('Testimoni') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('article')" :active="request()->routeIs('article')">
+                    <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.*')">
                         {{ __('Article') }}
                     </x-nav-link>
                 </div>
