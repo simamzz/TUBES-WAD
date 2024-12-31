@@ -114,7 +114,9 @@ Route::group(['middleware' => ['permission:create users|view users|edit users|de
     });
 });
 
-require __DIR__ . '/auth.php';
+# require _DIR_ . '/auth.php';
+# require _DIR_ . '/auth.php';
+
 
 // Rekruit Routes
 Route::get('/rekruit', [RekruitController::class, 'index'])->name('rekruits.index');
@@ -127,8 +129,14 @@ Route::delete('/rekruit/{rekruit}', [RekruitController::class, 'destroy'])->name
 Route::patch('/rekruit/{rekruit}/accept', [RekruitController::class, 'accept'])->name('rekruits.accept');
 
 
-
-
+// Testimonial Routes
+Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index'); // Show all testimonials
+Route::get('/testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create'); // Show form to create testimonial
+Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store'); // Save new testimonial
+Route::get('/testimonials/{testimonial}', [TestimonialController::class, 'show'])->name('testimonials.show'); // Show a single testimonial
+Route::get('/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit'); // Show form to edit testimonial
+Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('testimonials.update'); // Update testimonial
+Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy'); // Delete testimonial
 
 // Rekruit Events
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
