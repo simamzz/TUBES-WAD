@@ -10,6 +10,7 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Course;
 use App\Models\Answer;
@@ -38,6 +39,8 @@ Route::middleware('auth')->group(function () {
 Route::resource('testimonials', TestimonialController::class);
 Route::resource('events', EventController::class);
 Route::resource('rekruits', RekruitController::class);
+Route::resource('course', CourseController::class);
+
 
 // NAVIGASI LINE ----------------------------
 // navigasi event
@@ -146,6 +149,10 @@ Route::post('/events', [EventController::class, 'store'])->name('events.store');
 Route::get('/events/{events}/edit', [EventController::class, 'edit'])->name('events.edit');
 Route::put('/events/{events}', [EventController::class, 'update'])->name('events.update');
 Route::delete('/events/{events}', [EventController::class, 'destroy'])->name('events.destroy');
+
+
+// Course
+Route::get('/courses', [CourseController::class, 'index'])->name('course.index');
 
 // Roles
 Route::group(['middleware' => ['role:admin']], function () {
