@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\EventExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EventController extends Controller
 {
@@ -105,5 +107,12 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($id);
         return view('events.show', compact('event'));
+    }
+
+    // Export data event ke Excel
+    public function export()
+    {
+        $event = Event::all();
+        return Excel::download(new EventExport($event), 'events.xlsx');
     }
 }

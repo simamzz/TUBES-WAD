@@ -24,7 +24,8 @@ use Illuminate\Support\Facades\Session;
             {{-- Hanya Admin yang bisa melihat tombol Create --}}
             @role('admin')
             <div class="col-sm-2" style="margin-top: 20px;">
-                <a class="btn btn-primary" href="{{ route('events.create') }}">Create New Event</a>
+                <a class="btn btn-primary mb-2" href="{{ route('events.create') }}">Create New Event</a>
+                <a class="btn btn-success" href="{{ route('events.export') }}">Export Event</a>
             </div>
             @endrole
         </div> 

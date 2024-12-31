@@ -35,6 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/events/export', [EventController::class, 'export'])->name('events.export');
+
+
 // controller
 Route::resource('testimonials', TestimonialController::class);
 Route::resource('events', EventController::class);
