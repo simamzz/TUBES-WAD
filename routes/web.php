@@ -115,7 +115,7 @@ Route::group(['middleware' => ['permission:create users|view users|edit users|de
 });
 
 # require _DIR_ . '/auth.php';
-# require _DIR_ . '/auth.php';
+require __DIR__ . '/auth.php';
 
 
 // Rekruit Routes
