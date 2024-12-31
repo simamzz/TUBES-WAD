@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Course;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Forum;
@@ -47,8 +48,8 @@ Route::get('/event', function () {
 
 // navigasi course
 Route::get('/course', function () {
-    $events = Event::all(); // ubah sesuai controller masing2
-    return view('course', compact('course'));
+    $courses = Course::all();
+    return view('course.index', compact('courses'));
 })->name('course');
 
 // navigasi testimoni
