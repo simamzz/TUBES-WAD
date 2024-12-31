@@ -27,4 +27,10 @@ class Rekruit extends Model
         'program',
         'file',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

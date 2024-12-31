@@ -120,9 +120,12 @@ require __DIR__ . '/auth.php';
 Route::get('/rekruit', [RekruitController::class, 'index'])->name('rekruits.index');
 Route::get('/rekruit/create', [RekruitController::class, 'create'])->name('rekruits.create');
 Route::post('/rekruit', [RekruitController::class, 'store'])->name('rekruits.store');
+Route::get('/rekruit/{rekruit}', [RekruitController::class, 'show'])->name('rekruits.show');
 Route::get('/rekruit/{rekruit}/edit', [RekruitController::class, 'edit'])->name('rekruits.edit');
 Route::put('/rekruit/{rekruit}', [RekruitController::class, 'update'])->name('rekruits.update');
 Route::delete('/rekruit/{rekruit}', [RekruitController::class, 'destroy'])->name('rekruits.destroy');
+Route::patch('/rekruit/{rekruit}/accept', [RekruitController::class, 'accept'])->name('rekruits.accept');
+
 
 
 
