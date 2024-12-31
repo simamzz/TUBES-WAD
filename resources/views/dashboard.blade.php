@@ -94,25 +94,51 @@ use Illuminate\Support\Str;
 </table>
 
 <!-- Course -->
-<table class="table table-bordered">
-    <td>
-        <!-- isi disini -->
-        <div class="py-4 text-center">
-        <h4>List Course</h4>
-        </div>
-        wkwk
-    </td>
-</table>
-
-<!-- Forum -->
-<table class="table table-bordered">
-    <td>
-        <!-- isi disini -->
-        <div class="py-4 text-center">
-        <h4>Forum</h4>
-        </div>
-        wkwk
-    </td>
+<table class="table table-borderless">
+    <tr>
+        <td>
+            <div class="py-4 text-center">
+                <h4></h4>
+                @if($events->isEmpty())
+                    <p>No events available.</p>
+                @else
+                    <div class="container mx-auto px-4 py-8">
+                        <div class="space-y-4">
+                            @foreach($events as $event)
+                                <div class="bg-white rounded-lg shadow-md p-6 flex justify-center">
+                                    <div class="flex-1">
+                                        <h3 class="font-bold text-lg mb-1 text-center">{{ $event->title }}</h3>
+                                        <p class="text-sm text-gray-500 mb-2 text-center">
+                                            {{ \Carbon\Carbon::parse($event->event_date)->format('d-m-Y H:i') }}
+                                        </p>
+                                        <p class="text-gray-700 text-sm mb-4 text-center"></p>
+                                            <i class="fas fa-map-marker-alt mr-2"></i>
+                                            {{ $event->location }}
+                                        </p>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-gray-600 text-sm text-center">{{ Str::limit($event->description, 80) }}</p>
+                                    </div>
+                                    <div class="ml-4 flex-shrink-0">
+                                        <a href="{{ route('events.show', $event->id) }}" 
+                                            class="inline-block px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                                            Details
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="text-center mt-8">
+                            <a href="{{ route('course.index') }}" 
+                                class="inline-block px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors">
+                                See More
+                            </a>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </td>
+    </tr>
 </table>
 
 <!-- Rekruitasi -->
@@ -146,6 +172,22 @@ use Illuminate\Support\Str;
         </div>
         wkwk
     </td>
+</table>
+
+<!-- line -->
+<hr style="border: 1px solid #000; width: 100%;">
+
+<!-- Forum -->
+<table class="table table-borderless">
+    <tr>
+        <td>
+            <div class="py-4 d-flex justify-content-between align-items-center">
+                <h4>Forum</h4>
+                <p>Jika ada pertanyaan silahkan langsung tanyakan</p>
+                <a href="{{ route('forums.index') }}" class="btn btn-primary">Go to Forum</a>
+            </div>
+        </td>
+    </tr>
 </table>
 
 </body>
