@@ -44,7 +44,7 @@ use Illuminate\Support\Facades\Session;
             <thead>
                 <tr>
                     <th scope="col">NO</th>
-                    <th scope="col">User ID</th>
+                    <th scope="col">NIM</th>
                     <th scope="col">Name</th>
                     <th scope="col">Category</th>
                     <th scope="col">Testimonial</th>
@@ -55,7 +55,7 @@ use Illuminate\Support\Facades\Session;
                 @forelse ($testimonials as $testimonial)
                     <tr>
                         <td><b>{{ $loop->iteration }}.<b></td>
-                        <td>{{ $testimonial->user_id }}</td>
+                        <td>{{ $testimonial->nim }}</td>
                         <td>
                             <a href="{{ route('testimonials.show', $testimonial) }}" style="font-weight: bold; text-decoration: none;">
                                 {{ $testimonial->name }}

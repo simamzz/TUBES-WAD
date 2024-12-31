@@ -10,7 +10,7 @@ return new class extends Migration {
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); //relasi ke tabel users
+            $table->string('nim')->nullable();
             $table->string('name')->nullable();
             $table->string('category')->nullable(); //kategori ulasan (mentor/website)
             $table->text('testimonial')->nullable(); //isi ulasan

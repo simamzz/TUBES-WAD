@@ -25,7 +25,7 @@ class TestimonialController extends Controller
     {
         // validasi data input dari form
         $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id', //memastikan user_id ada dan valid
+            'nim' => 'required|string',
             'name' => 'required|string',
             'category' => 'required|string',
             'testimonial' => 'required|string',
@@ -64,7 +64,7 @@ class TestimonialController extends Controller
 
         // validasi data input dari form
         $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id',
+            'nim' => 'required|string',
             'name' => 'required|string',
             'category' => 'required|string',
             'testimonial' => 'required|string',

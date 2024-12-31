@@ -12,15 +12,9 @@ class Testimonial extends Model
     protected $table = 'testimonials';
     
     protected $fillable = [
-        'user_id',
+        'nim',
         'name',
         'category',
         'testimonial',
     ];
-
-    //Relasi ke model user
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

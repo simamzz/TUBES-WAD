@@ -37,16 +37,16 @@
             <form action="{{ route('testimonials.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                {{-- User ID --}}
+                {{-- NIM --}}
                 <div class="form-group row">
-                    <label for="user_id" class="col-sm-2 col-form-label">User ID</label>
+                    <label for="nim" class="col-sm-2 col-form-label">NIM</label>
                     <div class="col-sm-10">
                         <input 
                             type="text" 
-                            name="user_id" 
+                            name="nim" 
                             class="form-control" 
-                            id="user_id" 
-                            placeholder="Enter User ID" 
+                            id="nim" 
+                            placeholder="Enter NIM" 
                             required>
                     </div>
                 </div>

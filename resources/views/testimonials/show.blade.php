@@ -19,9 +19,9 @@
         <br>
 
         <div class="form-group row">
-            <label for="userId" class="col-sm-2 col-form-label">User ID</label>
+            <label for="nim" class="col-sm-2 col-form-label">NIM</label>
             <div class="col-sm-10">
-                {{ $testimonial->user_id }}
+                {{ $testimonial->nim }}
             </div>
         </div>
         <div class="form-group row">
