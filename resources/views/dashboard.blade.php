@@ -144,34 +144,83 @@ use Illuminate\Support\Str;
 <!-- Rekruitasi -->
 <table class="table table-bordered">
     <td>
-        <!-- isi disini -->
-        <div class="py-4 text-center">
-        <h4>Rekruitasi</h4>
+        <div class="py-4 d-flex justify-content-between align-items-center">
+            <h4>Ingin Daftar?</h4>
+            <a href="{{ route('rekruits.index') }}" class="btn btn-primary">Daftar Sekarang</a>
         </div>
-        wkwk
     </td>
 </table>
 
 <!-- Article -->
-<table class="table table-bordered">
-    <td>
-        <!-- isi disini -->
-        <div class="py-4 text-center">
-        <h4>Article</h4>
-        </div>
-        wkwk
-    </td>
+<table class="transparent">
+    <tr>
+        <td>
+            <div class="py-4 text-center">
+                <h4>Articles</h4>
+                @if($articles->isEmpty())
+                    <p>No articles available.</p>
+                @else
+                    <div class="container mx-auto px-4 py-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            @foreach($articles as $article)
+                                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                    <div class="relative">
+                                        <img src="{{ asset('storage/' . $article->image) }}" alt="Article Image" 
+                                            class="w-full h-48 object-cover">
+                                        <span class="absolute top-4 right-4 text-sm text-white bg-black bg-opacity-30 px-2 py-1 rounded">
+                                            {{ \Carbon\Carbon::parse($article->published_at)->format('d-m-Y') }}
+                                        </span>
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="font-bold text-lg mb-2">{{ $article->title }}</h3>
+                                        <p class="text-gray-600 text-sm mb-4">{{ Str::limit($article->content, 80) }}</p>
+                                        <div class="mt-auto">
+                                            <a href="{{ route('articles.show', $article->id) }}" 
+                                            class="inline-block w-full text-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                                                Read More
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="text-center mt-8">
+                            <a href="{{ route('articles.index') }}" 
+                            class="inline-block px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors">
+                                See More
+                            </a>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </td>
+    </tr>
 </table>
 
 <!-- Testimoni -->
-<table class="table table-bordered">
-    <td>
-        <!-- isi disini -->
-        <div class="py-4 text-center">
-        <h4>Testimoni</h4>
-        </div>
-        wkwk
-    </td>
+<table class="table table-borderless">
+    <tr>
+        <td>
+            <div class="py-4 text-center">
+                <h4>Testimoni</h4>
+                @if($testimonials->isEmpty())
+                    <p>No testimonials available.</p>
+                @else
+                    <div class="container mx-auto px-4 py-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            @foreach($testimonials as $testimonial)
+                                <div class="bg-white rounded-lg shadow-md p-6">
+                                    <p class="font-bold text-lg mb-2">{{ $testimonial->name }}</p>
+                                    <p class="text-gray-600 text-sm mb-4">{{ $testimonial->testimonial }}</p>
+                                    <p class="text-gray-700 text-sm">{{ $testimonial->name }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </td>
+    </tr>
 </table>
 
 <!-- line -->
